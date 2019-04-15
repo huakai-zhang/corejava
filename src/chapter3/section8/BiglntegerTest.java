@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class BiglntegerTest {
     public static void main(String[] args) {
         BigDecimal m = new BigDecimal(10);
-        m.divide()
+
         Scanner in = new Scanner(System.in);
 
         System.out.print("How many numbers do you need to draw? ");
