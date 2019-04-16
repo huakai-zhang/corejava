@@ -1,11 +1,15 @@
 package chapter3.section10;
 
-import java.util.Arrays;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 
-public class test {
+public class test extends IOException {
     public static void main(String[] args) {
-        String[] s = {"A","B","C"};
-        String[] ss = Arrays.copyOf(s, 2);
-        System.out.println(Arrays.toString(ss));
+        LocalDate l = LocalDate.of(2016,6,25);
+        l = l.plusDays(1000);
+        Date date = new Date();
+        System.out.println(l.toString());
+        System.out.println(date.toString());
     }
 }
