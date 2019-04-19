@@ -19,4 +19,15 @@ public class Manager extends Employee {
     public void setBonus(double b) {
         bonus = b;
     }
+
+
+    @Override
+    public boolean equals(Object otherObject) {
+        if (!super.equals(otherObject)) {
+            return false;
+        }
+        // super.equals checked that this and otherObject belong to the same class
+        Manager other = (Manager) otherObject;
+        return bonus == other.bonus;
+    }
 }
