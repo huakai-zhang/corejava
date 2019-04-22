@@ -1,15 +1,17 @@
 package chapter5;
 
+import chapter4.section3.Employee;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * @author Spring Zhang
- * @date 2019/4/18 8:37
- */
 public class Test {
-    public static void main(String[] args) {
-        int[] luckyNumbers = { 2, 3, 5, 7,13 } ;
-        System.out.println(luckyNumbers);
-        System.out.println(Arrays.toString(luckyNumbers));
+    public static void main(String[] args) throws Exception {
+        Employee harry = new Employee("Harry Hacker", 35000, 1989, 1, 19);
+        ArrayList<Integer> squares = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            squares.add(i * i);
+        }
+        System.out.println(new ObjectAnalyzer().toString(harry));
     }
 }

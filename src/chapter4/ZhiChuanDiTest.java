@@ -1,5 +1,7 @@
 package chapter4;
 
+import java.util.Arrays;
+
 /**
  * <strong style="color:red">傻吊</strong>
  * @author Spring Zhang
@@ -10,10 +12,11 @@ public class ZhiChuanDiTest {
         int i = 0;
         String s = "AB";
         StringBuffer sb = new StringBuffer("AB");
+        char[] ch={'a','b'};
         TT tt = new TT();
         tt.setI(0);
-        change(i, s, tt, sb);
-        System.out.println(i + " " + s + " " + tt.getI() + " " + sb.toString());
+        change(i, s, tt, sb, ch);
+        System.out.println(i + " " + s + " " + tt.getI() + " " + sb.toString() + " " + Arrays.toString(ch));
 
 
         TT t2 = new TT();
@@ -23,11 +26,12 @@ public class ZhiChuanDiTest {
         System.out.println("t2:" + t2.getI());
     }
 
-    static void change(int x, String y, TT t, StringBuffer s) {
+    static void change(int x, String y, TT t, StringBuffer s, char[] c) {
         x = x + 1;
         y = y + "C";
         t.setI(2);
         s.append("C");
+        c[0] = 'z';
     }
 }
 class TT {
