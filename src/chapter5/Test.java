@@ -13,5 +13,8 @@ public class Test {
             squares.add(i * i);
         }
         System.out.println(new ObjectAnalyzer().toString(harry));
+        Person p = new Student("Wu", "Economics");
+        System.out.println(p instanceof Object);
+        System.out.println(p instanceof Student);
     }
 }

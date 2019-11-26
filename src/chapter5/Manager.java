@@ -30,4 +30,11 @@ public class Manager extends Employee {
         Manager other = (Manager) otherObject;
         return bonus == other.bonus;
     }
+
+    @Override
+    public String toString () {
+        return super.toString()
+                + "[bonus=" + bonus +
+                "]";
+    }
 }

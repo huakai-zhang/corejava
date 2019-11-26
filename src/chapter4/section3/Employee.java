@@ -5,14 +5,34 @@ import chapter5.Person;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import static javafx.scene.input.KeyCode.T;
-
-public class Employee extends Person {
+public class Employee extends Person implements Comparable, Cloneable {
+    private int id;
     private String name;
     private double salary;
     private LocalDate hireDay;
+    private static int nextId;
+
+    /*private int id = assignId();
+
+    private static int assignId() {
+        int r = nextId;
+        nextId++;
+        return r;
+    }*/
+
+    private final StringBuilder evaluations = new StringBuilder();
 
     public Employee() {
+    }
+
+    public Employee(double s) {
+        this("Employee #" + nextId, s);
+        nextId++;
+    }
+
+    public Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
     }
 
     public Employee(String name, double salary, int year, int month, int day) {
@@ -21,11 +41,20 @@ public class Employee extends Person {
         hireDay = LocalDate.of(year, month, day);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String getDescription() {
         return String.format("an employee with a salary of salary $%.2f", salary);
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -60,7 +89,7 @@ public class Employee extends Person {
         // now we know otherObject is a non-null Employee
         Employee other = (Employee) otherObject;
         // test whether the fields have identical values
-        return name.equals(other.name) && salary == other.salary && hireDay.equals(other.hireDay);
+        return Objects.equals(name, other.name) && salary == other.salary && Objects.equals(hireDay, other.hireDay);
     }
 
     @Override
@@ -76,5 +105,16 @@ public class Employee extends Person {
                 "salary: " + salary
                 + ",hireDay=" + hireDay
                 + "]";
+    }
+
+    @Override
+    public int compareTo(Object otherObject) {
+        Employee other = (Employee) otherObject;
+        return Double.compare(salary, other.salary);
+    }
+
+    @Override
+    public Employee clone() throws CloneNotSupportedException {
+        return (Employee) super.clone();
     }
 }

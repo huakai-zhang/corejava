@@ -17,5 +17,11 @@ public class StringEqualTest {
         String greeting = "Hello";
         System.out.println(greeting == "Hello");
         System.out.println(greeting.substring(0, 3) == "Hel");
+        // true
+        // false
+        // true
+        // true
+        // true
+        // false
     }
 }

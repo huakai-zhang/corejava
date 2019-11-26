@@ -22,12 +22,6 @@ public class EmployeeTest {
             System.out.println("name=" + e.getName() + ",salary=" + e.getSalary() + ",hi reDay="
                     + e.getHireDay());
         }
-
-        // 时间使用Date(Date对象是可变的)
-        /*System.out.println(staff[0].getHireDay());
-        Date d = staff[0].getHireDay();
-        double t = 10 * 365.25 *24 * 60 * 60 * 1000;
-        d.setTime(d.getTime() - (long)t);
-        System.out.println(staff[0].getHireDay());*/
+        System.out.println(staff[1].toString());
     }
 }
