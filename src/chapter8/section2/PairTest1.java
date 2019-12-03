@@ -1,5 +1,8 @@
 package chapter8.section2;
 
+import java.lang.reflect.Array;
+import java.util.function.IntFunction;
+
 public class PairTest1 {
     public static void main(String[] args) {
         String[] words = { "Mary", "had", "a", "little", "lamb" };
@@ -45,5 +48,15 @@ class ArrayAlg {
             }
         }
         return smallest;
+    }
+
+    public static <T extends Comparable> T[] minmax(IntFunction<T[]> constr, T... a) {
+        T[] mm = constr.apply(2);
+        return mm;
+    }
+
+    public static <T extends Comparable> T[] minmax(T... a) {
+        T[] mm = (T[]) Array.newInstance(a.getClass().getComponentType(), 2);
+        return mm;
     }
 }

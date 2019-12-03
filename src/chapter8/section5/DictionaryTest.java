@@ -5,6 +5,7 @@ import chapter8.section2.Pair;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Collection;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -28,6 +29,13 @@ public class DictionaryTest {
         objarray[0] = new Pair<Employee>();*/
 
         Pair<String>[] table = (Pair<String>[]) new Pair<?>[10];
-        table[0] = new Pair<Employee>();
+        //table[0] = new Pair<Employee>();
+    }
+
+    @SafeVarargs
+    public static <T> void addAll(Collection<T> coll, T... ts) {
+        for (T t : ts) {
+            coll.add(t);
+        }
     }
 }

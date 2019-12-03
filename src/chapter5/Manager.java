@@ -10,6 +10,10 @@ public class Manager extends Employee {
         bonus = 0;
     }
 
+    public double getBonus() {
+        return bonus;
+    }
+
     @Override
     public double getSalary() {
         double baseSalary = super.getSalary();
