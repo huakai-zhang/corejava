@@ -25,6 +25,10 @@ public class Employee extends Person implements Comparable, Cloneable {
     public Employee() {
     }
 
+    public Employee(String name) {
+        this.name = name;
+    }
+
     public Employee(double s) {
         this("Employee #" + nextId, s);
         nextId++;
