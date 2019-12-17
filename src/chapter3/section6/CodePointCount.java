@@ -3,7 +3,7 @@ package chapter3.section6;
 public class CodePointCount {
     public static void main(String[] args) {
         String greeting = "𝕆 is the set of octonions";
-        /* int cpCount = greeting.codePointCount(0, greeting.length());
+        /*int cpCount = greeting.codePointCount(0, greeting.length());
         System.out.println(greeting.length());
         System.out.println(cpCount);
 

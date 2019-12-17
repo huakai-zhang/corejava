@@ -1,6 +1,4 @@
-package chapter10.section7;
-
-import chapter3.section7.SystemOutTest;
+package chapter11.section7;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
