@@ -9,7 +9,7 @@ public class ReflectiveTest {
         Employee e = new Employee("Carl Cracker", 75000, 1987, 12, 15);
         Class cl = e.getClass();
         System.out.println(cl.getName() + " " + e.getName());
-        // chapter4.section3.Employee Carl Cracker
+        // chapter4.section2.Employee Carl Cracker
         System.out.println(e.getClass() == Employee.class);
 
         String className = "java.util.Random";

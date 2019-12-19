@@ -1,4 +1,4 @@
-package chapter12.section3;
+package chapter12.section1;
 
 import java.io.*;
 import java.util.zip.ZipInputStream;
