@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Employee extends Person implements Comparable, Cloneable {
+    public static final int NAME_SIZE = 40;
+    public static final int RECODE_SIZE = 2 * NAME_SIZE + 8 + 4 + 4 + 4;
     private int id;
     private String name;
     private double salary;
