@@ -2,10 +2,11 @@ package chapter4.section3;
 
 import chapter5.Person;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Employee extends Person implements Comparable, Cloneable {
+public class Employee extends Person implements Comparable, Cloneable,Serializable,Externalizable {
     public static final int NAME_SIZE = 40;
     public static final int RECODE_SIZE = 2 * NAME_SIZE + 8 + 4 + 4 + 4;
     private int id;
@@ -122,5 +123,19 @@ public class Employee extends Person implements Comparable, Cloneable {
     @Override
     public Employee clone() throws CloneNotSupportedException {
         return (Employee) super.clone();
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeUTF(name);
+        out.writeDouble(salary);
+        out.writeLong(hireDay.toEpochDay());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        name = in.readUTF();
+        salary = in.readDouble();
+        hireDay = LocalDate.ofEpochDay(in.readLong());
     }
 }

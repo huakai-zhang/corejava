@@ -2,8 +2,11 @@ package chapter5;
 
 import chapter4.section3.Employee;
 
-public class Manager extends Employee {
+import java.io.Serializable;
+
+public class Manager extends Employee implements Serializable{
     private double bonus;
+    private Employee secretary;
 
     public Manager(String name, double salary, int year, int month, int day) {
         super(name, salary, year, month, day);
@@ -24,6 +27,13 @@ public class Manager extends Employee {
         bonus = b;
     }
 
+    public Employee getSecretary() {
+        return secretary;
+    }
+
+    public void setSecretary(Employee secretary) {
+        this.secretary = secretary;
+    }
 
     @Override
     public boolean equals(Object otherObject) {
@@ -39,6 +49,6 @@ public class Manager extends Employee {
     public String toString () {
         return super.toString()
                 + "[bonus=" + bonus +
-                "]";
+                ", secretary= " + secretary  + "]";
     }
 }
