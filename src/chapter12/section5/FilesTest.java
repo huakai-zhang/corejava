@@ -3,6 +3,8 @@ package chapter12.section5;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.PosixFileAttributes;
 import java.util.List;
 
 /**
@@ -33,5 +35,8 @@ public class FilesTest {
         Path newPath = Files.createTempDirectory(dir, prefix);
         Path newPath = Files.createTempDirectory(prefix);*/
         /*Files.copy(path, path, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);*/
+
+        BasicFileAttributes attributes = Files.readAttributes(path, BasicFileAttributes.class);
+        PosixFileAttributes posixFileAttributes = Files.readAttributes(path, PosixFileAttributes.class);
     }
 }
