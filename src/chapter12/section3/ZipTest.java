@@ -8,8 +8,8 @@ import java.util.zip.ZipInputStream;
 
 public class ZipTest {
     public static void main(String[] args) throws IOException {
-        ZipFile zf = new ZipFile("E:\\IDEAFile\\corejava\\src\\chapter12\\section3\\first.zip");
-        ZipInputStream zin = new ZipInputStream(new FileInputStream("E:\\IDEAFile\\corejava\\src\\chapter12\\section3\\first.zip"));
+        ZipFile zf = new ZipFile("E:\\IDEAFile\\corejava\\src\\chapter12\\JDBCTest\\first.zip");
+        ZipInputStream zin = new ZipInputStream(new FileInputStream("E:\\IDEAFile\\corejava\\src\\chapter12\\JDBCTest\\first.zip"));
         ZipEntry entry;
         while ((entry = zin.getNextEntry()) != null) {
             InputStream inputStream = zf.getInputStream(entry);

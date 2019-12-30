@@ -17,13 +17,13 @@ public class RandomAccessTest {
         staff[1] = new Employee("Harry Hacker", 50000, 2019, 12, 19);
         staff[2] = new Employee("Tony Tester", 40000, 2019, 12, 18);
 
-        try (DataOutputStream out = new DataOutputStream(new FileOutputStream("E:\\JAVA\\IdeaProjects\\corejava\\src\\chapter12\\section3\\employee.dat"))) {
+        try (DataOutputStream out = new DataOutputStream(new FileOutputStream("E:\\JAVA\\IdeaProjects\\corejava\\src\\chapter12\\JDBCTest\\employee.dat"))) {
             for (Employee e : staff) {
                 writeData(out, e);
             }
         }
 
-        try (RandomAccessFile in = new RandomAccessFile("E:\\JAVA\\IdeaProjects\\corejava\\src\\chapter12\\section3\\employee.dat", "r")) {
+        try (RandomAccessFile in = new RandomAccessFile("E:\\JAVA\\IdeaProjects\\corejava\\src\\chapter12\\JDBCTest\\employee.dat", "r")) {
             int n = (int)(in.length() / Employee.RECODE_SIZE);
             Employee[] newStaff = new Employee[n];
 

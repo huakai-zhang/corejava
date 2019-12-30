@@ -8,7 +8,7 @@ import java.util.zip.ZipOutputStream;
 
 public class ZipOutputStreamTest {
     public static void main(String[] args) throws IOException {
-        FileOutputStream fout = new FileOutputStream("E:\\IDEAFile\\corejava\\src\\chapter12\\section3\\haha.zip");
+        FileOutputStream fout = new FileOutputStream("E:\\IDEAFile\\corejava\\src\\chapter12\\JDBCTest\\haha.zip");
         ZipOutputStream zout = new ZipOutputStream(fout);
         for (int i = 0; i < 3; i++) {
             ZipEntry ze = new ZipEntry("hello" + i + ".txt");
