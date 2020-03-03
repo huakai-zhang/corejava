@@ -8,6 +8,7 @@ import java.util.Scanner;
  * @date 2019/12/3 11:19
  */
 public abstract class Block {
+
     public abstract void body() throws Exception;
 
     public Thread toThread() {
