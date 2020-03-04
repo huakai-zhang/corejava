@@ -9,8 +9,14 @@ import factory.Car;
 public abstract class AbstractFactory {
     protected abstract Car getCar();
 
+    // 这些代码就是动态配置的功能
     public Car getCar(String name) {
         if ("BMW".equalsIgnoreCase(name)) {
+            // Spring中的工厂模式
+            // Bean
+            // BeanFactory，生产Bean
+            // 单例的Bean，被代理过的Bean，最原始的Bean，List类型的Bean，作用域不同的Bean
+            // getBean
             return  new BwmFactory().getCar();
         } else if ("Benz".equalsIgnoreCase(name)) {
             return new BenzFactory().getCar();
