@@ -8,7 +8,6 @@ public class LogAspect {
     private final static Logger logger = Logger.getLogger(LogAspect.class);
 
     public void before(JoinPoint joinPoint) {
-        System.out.println(111111);
         logger.info("调用方法之前执行" + joinPoint);
     }
 

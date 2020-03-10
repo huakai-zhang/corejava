@@ -11,19 +11,30 @@
    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <!-- 声明一个需要织入到虚拟切面的逻辑 -->
-    <bean id="logAspect" class="com.spring.aop.aspect.LogAspect">
+    <!--<bean id="logAspect" class="com.spring.aop.aspect.LogAspect">
 
     </bean>
 
     <aop:config>
         <aop:aspect ref="logAspect">
-            <!-- 切点，具体的方法声明 -->
+            &lt;!&ndash; 切点，具体的方法声明 &ndash;&gt;
             <aop:pointcut id="logPointcut" expression="execution(* com.spring.aop.service..*(..))"/>
             <aop:before method="before" pointcut-ref="logPointcut"/>
             <aop:after-returning method="afterReturn" pointcut-ref="logPointcut"/>
-            <aop:after-returning method="after" pointcut-ref="logPointcut"/>
+            <aop:after method="after" pointcut-ref="logPointcut"/>
             <aop:after-throwing method="afterThrow" pointcut-ref="logPointcut"/>
         </aop:aspect>
-    </aop:config>
+    </aop:config>-->
 
+    <!-- 具体的方法就是切点 -->
+    <!-- 如何定义一个具体的方法 -->
+    <!-- 权限修饰符（public/private/protected，可省略） 返回值（*表示任意返回值，必填） 方法所属哪个包哪个类（可省略，任何包下的任何类）.方法名称（必填）(参数列表) throws 异常类型 -->
+    <!-- 借鉴了URL的语法cd（change directory . 表示当前目录， cd ..返回一级目录 -->
+    <!-- 这里..*, ..表示当前包下的任意文件（包括子包）, *表示所有类 -->
+    <!-- execution(public * com.spring.aop.service..*.*(String, String)) -->
+
+    <!-- 如果一个方法用final修饰了，就意味着这个方法不能被重写
+        也就意味着，我们的子类不能对这个方法进行扩展
+        代理是无法实现的，所以表达式是没有final
+     -->
 </beans>

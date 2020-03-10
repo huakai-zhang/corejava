@@ -1,6 +1,5 @@
 package chapter4.section3;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

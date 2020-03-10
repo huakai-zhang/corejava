@@ -1,4 +1,4 @@
-package com.spring.aop.service;
+package com.spring.aop.service.a;
 
 import com.spring.model.Member;
 import org.apache.log4j.Logger;
@@ -9,9 +9,8 @@ public class MemberManagerService {
 
     private final static Logger logger = Logger.getLogger(MemberManagerService.class);
 
-    public boolean add(Member member) {
+    public void add(Member member) {
         logger.info("增加用户");
-        return true;
     }
 
     public boolean remove(long id) throws Exception {
