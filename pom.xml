@@ -9,6 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <mysql-connector-java-version>5.1.31</mysql-connector-java-version>
         <org.springframework-version>4.2.0.RELEASE</org.springframework-version>
     </properties>
@@ -90,6 +92,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.17</version>
         </dependency>
     </dependencies>
 </project>
