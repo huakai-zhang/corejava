@@ -2,6 +2,7 @@ package com.spring.jdbc;
 
 import com.alibaba.fastjson.JSON;
 import com.spring.model.Member;
+import org.springframework.web.servlet.DispatcherServlet;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;
@@ -32,6 +33,10 @@ public class JdbcTest {
     //原则：约定优于配置（保证代码健壮性）
     //DAO原则：一个Dao只操作一张表
     //约定：做修改和删除的是根据主键来操作的
+    //约定：读写分离
+    //约定：支持分库分表
+    //约定：ORM支持的类型原则上只认java八大基本数据类型+String（为了降低复杂度）
+    //尽量使用单表操作，如果是在需要多表操作，可以把数据查出来放到内存，然后在内存中计算
 
     public static void main(String[] args) {
         // 原生的JDBC如何操作？

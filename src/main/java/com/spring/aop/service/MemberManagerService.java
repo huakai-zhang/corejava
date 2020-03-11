@@ -1,4 +1,4 @@
-package com.spring.aop.service.a;
+package com.spring.aop.service;
 
 import com.spring.model.Member;
 import org.apache.log4j.Logger;

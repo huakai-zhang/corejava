@@ -1,7 +1,6 @@
 package com.spring.aop.test;
 
-import com.spring.aop.service.a.MemberManagerService;
-import org.junit.Ignore;
+import com.spring.aop.service.MemberManagerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
