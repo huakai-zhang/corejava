@@ -4,4 +4,31 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:application-web.xml</param-value>
+    </context-param>
+    
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextClass</param-name>
+            <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- 不做SEO的情况下，大部分是做静动态完全分离开发 -->
+    <!-- 后台只返回JSON，前端HTML页面通过js调用ajax请求获取后台的数据 -->
+    <!-- 通过前端的js模版框架去渲染，减轻服务器的负担，视图和后台业务逻辑完全解耦 -->
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.json</url-pattern>
+    </servlet-mapping>
+
 </web-app>
