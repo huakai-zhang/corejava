@@ -51,22 +51,22 @@
 
    <!-- 3.利用切面编程来实现对某一类方法进行事务管理（声明式事务） -->
 
-   <aop:config>
+   <!--<aop:config>
     	<aop:pointcut expression="execution(public * com.spring..*.service..*Service.*(..))" id="transactionPointcut"/>
    		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice"/>
-    </aop:config>
+    </aop:config>-->
 
 
    <!-- 4、配置通知规则 -->
    <!-- Transaction  tx :NameSpace -->
-   <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+  <!-- <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
        <tx:attributes>
          <tx:method name="add*" propagation="REQUIRED" rollback-for="Exception,RuntimeException" timeout="-1"/>
          <tx:method name="remove*" propagation="REQUIRED" rollback-for="Exception,RuntimeException"/>
          <tx:method name="modify*" propagation="REQUIRED" rollback-for="Exception,RuntimeException"/>
-         <tx:method name="transfer*" propagation="REQUIRED" rollback-for="Exception"/>
+         <tx:method name="transfer*" propagation="REQUIRES_NEW" rollback-for="Exception"/>
          <tx:method name="login" propagation="MANDATORY"/>
          <tx:method name="query*" read-only="true"/>
        </tx:attributes>
-   </tx:advice>
+   </tx:advice>-->
 </beans>
