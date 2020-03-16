@@ -37,4 +37,36 @@
         也就意味着，我们的子类不能对这个方法进行扩展
         代理是无法实现的，所以表达式是没有final
      -->
+
+   <!--
+    1.数据源：实际上就是包含了Connection对象，不管是哪个厂商都需要实现DataSource接口
+    就可以拿到Connection对象
+    2.使用Spring给我们提供的工具类，TransactionManager事务管理器来管理所有的事务操作（肯定要拿到连接对象）
+    -->
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="dataSource"/>
+   </bean>
+
+   <tx:annotation-driven transaction-manager="transactionManager"/>
+
+   <!-- 3.利用切面编程来实现对某一类方法进行事务管理（声明式事务） -->
+
+   <aop:config>
+    	<aop:pointcut expression="execution(public * com.spring..*.service..*Service.*(..))" id="transactionPointcut"/>
+   		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice"/>
+    </aop:config>
+
+
+   <!-- 4、配置通知规则 -->
+   <!-- Transaction  tx :NameSpace -->
+   <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+       <tx:attributes>
+         <tx:method name="add*" propagation="REQUIRED" rollback-for="Exception,RuntimeException" timeout="-1"/>
+         <tx:method name="remove*" propagation="REQUIRED" rollback-for="Exception,RuntimeException"/>
+         <tx:method name="modify*" propagation="REQUIRED" rollback-for="Exception,RuntimeException"/>
+         <tx:method name="transfer*" propagation="REQUIRED" rollback-for="Exception"/>
+         <tx:method name="login" propagation="MANDATORY"/>
+         <tx:method name="query*" read-only="true"/>
+       </tx:attributes>
+   </tx:advice>
 </beans>

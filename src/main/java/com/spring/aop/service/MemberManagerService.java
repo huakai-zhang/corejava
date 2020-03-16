@@ -1,30 +1,54 @@
 package com.spring.aop.service;
 
+import com.spring.aop.aspect.AnnotationAspect;
+import com.spring.aop.dao.MemberDao;
 import com.spring.model.Member;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class MemberManagerService {
 
-    private final static Logger logger = Logger.getLogger(MemberManagerService.class);
+    private final static org.apache.log4j.Logger logger = Logger.getLogger(MemberManagerService.class);
 
-    public void add(Member member) {
-        logger.info("增加用户");
+    @Autowired
+    MemberDao memberDao;
+
+    public List<Member> query() throws Exception{
+        logger.info("查询用户列表");
+        return memberDao.select();
     }
 
-    public boolean remove(long id) throws Exception {
-        logger.info("删除用户");
-        throw new Exception("这是自己抛出来的异常");
+
+    public boolean remove(long id) throws Exception{
+        boolean r = memberDao.delete(id) > 0;
+        throw new Exception("自定义异常");
     }
 
-    public boolean modify(Member member) {
-        logger.info("修改用户");
-        return true;
+
+    public boolean modify(long id,String name) throws Exception{
+        return memberDao.update(id, name) > 0;
     }
 
-    public boolean query(String loginName) {
-        logger.info("查询用户");
-        return true;
+
+    public boolean add(String name) throws Exception{
+        boolean r = memberDao.insert(name) > 0;
+        //throw new Exception("测试回滚");
+        return r;
     }
+
+    //	第一层   login本身是一个事务
+    @Transactional
+    public boolean login(long id,String name) throws Exception{
+        //事务里面又调用了事务方法
+        //很显然，事务嵌套了两层
+        boolean modify = this.modify(id, name);
+//		throw new Exception("测试无事务");
+        return modify;
+    }
+
 }

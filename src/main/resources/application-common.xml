@@ -24,4 +24,13 @@
 		</property>
 	</bean>
 
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<!--配置jdbc-->
+				<value>classpath:db.properties</value>
+			</list>
+		</property>
+	</bean>
 </beans>

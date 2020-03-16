@@ -15,7 +15,7 @@ public class MemberDaoTest {
     MemberDao memberDao;
 
     @Test
-    public void testAdd() {
-        memberDao.insert();
+    public void testAdd() throws Exception {
+        memberDao.insert("");
     }
 }
