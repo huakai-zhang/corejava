@@ -1,6 +1,6 @@
 package com.spring.model;
 
-public class Member {
+public class User {
     private int id;
     private String name;
 

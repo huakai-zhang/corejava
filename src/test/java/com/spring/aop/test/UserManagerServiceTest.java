@@ -1,7 +1,7 @@
 package com.spring.aop.test;
 
 import com.spring.aop.service.MemberManagerService;
-import com.spring.model.Member;
+import com.spring.model.User;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @ContextConfiguration(locations = {"classpath*:application-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class MemberManagerServiceTest {
+public class UserManagerServiceTest {
 
     @Autowired
     MemberManagerService memberManagerService;
@@ -48,8 +48,8 @@ public class MemberManagerServiceTest {
     @Test
     @Ignore
     public void testQuery() throws Exception {
-        List<Member> memberList = memberManagerService.query();
-        System.out.println(memberList);
+        List<User> userList = memberManagerService.query();
+        System.out.println(userList);
     }
 
     @Test

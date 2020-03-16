@@ -1,8 +1,7 @@
 package com.spring.aop.service;
 
-import com.spring.aop.aspect.AnnotationAspect;
 import com.spring.aop.dao.MemberDao;
-import com.spring.model.Member;
+import com.spring.model.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,7 @@ public class MemberManagerService {
     @Autowired
     MemberDao memberDao;
 
-    public List<Member> query() throws Exception{
+    public List<User> query() throws Exception{
         logger.info("查询用户列表");
         return memberDao.select();
     }

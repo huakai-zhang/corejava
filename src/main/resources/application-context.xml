@@ -7,5 +7,5 @@
     <import resource="classpath:application-common.xml"/>
     <import resource="classpath:application-db.xml"/>
     <import resource="classpath:application-aop.xml"/>
-
+    <import resource="config/*.xml"/>
 </beans>

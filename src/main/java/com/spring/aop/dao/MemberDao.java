@@ -1,6 +1,6 @@
 package com.spring.aop.dao;
 
-import com.spring.model.Member;
+import com.spring.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -22,13 +22,13 @@ public class MemberDao {
     }
 
 
-    public List<Member> select(){
+    public List<User> select(){
 
         return template.query("select * from user", new RowMapper(){
 
             @Override
-            public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Member m = new Member();
+            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+                User m = new User();
                 m.setId(rs.getInt("id"));
                 m.setName(rs.getString("name"));
                 return m;

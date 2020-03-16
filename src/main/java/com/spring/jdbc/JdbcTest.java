@@ -1,8 +1,7 @@
 package com.spring.jdbc;
 
 import com.alibaba.fastjson.JSON;
-import com.spring.model.Member;
-import org.springframework.web.servlet.DispatcherServlet;
+import com.spring.model.User;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;
@@ -62,7 +61,7 @@ public class JdbcTest {
             int len = rs.getMetaData().getColumnCount();
             List<Object> result = new ArrayList<>();
             while (rs.next()) {
-                Class clazz = Member.class;
+                Class clazz = User.class;
                 Object obj = clazz.newInstance();
                 for (int i = 1; i <= len; i++) {
                     String columnName = rs.getMetaData().getColumnName(i);
