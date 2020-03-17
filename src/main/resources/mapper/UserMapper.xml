@@ -15,4 +15,8 @@
         SELECT * FROM user
         WHERE id = #{id}
     </select>
+    
+    <insert id="insertUser" parameterType="com.spring.model.User">
+        INSERT INTO user (name) VALUES (#{name, jdbcType=VARCHAR, typeHandler=com.spring.mybatis.handler.SpringTypeHandle})
+    </insert>
 </mapper>

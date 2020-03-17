@@ -1,5 +1,6 @@
 package com.spring.aop.test;
 
+import com.github.pagehelper.PageHelper;
 import com.spring.model.User;
 import com.spring.mybatis.dao.UserMapper;
 import org.junit.Ignore;
@@ -27,6 +28,7 @@ public class UserMapperTest {
 
     @Test
     public void selectAll() throws Exception {
+        PageHelper.startPage(2, 10);
         List<User> userList = mapper.selectAll();
         System.out.println(userList);
     }
@@ -36,5 +38,11 @@ public class UserMapperTest {
     public void selectById() throws Exception {
         User user = mapper.selectById(1);
         System.out.println(user);
+    }
+
+    @Test
+    @Ignore
+    public void insertUser() throws Exception {
+        mapper.insertUser(new User("Xiaoxiao"));
     }
 }
