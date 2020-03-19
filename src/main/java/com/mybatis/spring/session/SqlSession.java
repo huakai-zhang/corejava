@@ -1,6 +1,7 @@
 package com.mybatis.spring.session;
 
 import com.mybatis.spring.config.Configuration;
+import com.mybatis.spring.config.MapperRegistory;
 import com.mybatis.spring.executor.Executor;
 import com.mybatis.spring.mapper.MapperProxy;
 
@@ -25,8 +26,8 @@ public class SqlSession {
                 new Class[]{clazz}, new MapperProxy(this, clazz));
     }
 
-    public <T>T selectOne(String statement, Object parameter) {
-        return executor.query(statement, parameter);
+    public <T>T selectOne(MapperRegistory.MapperData mapperData, Object parameter) throws Exception {
+        return executor.query(mapperData, parameter);
     }
 
 }

@@ -15,7 +15,7 @@ public class MapperRegistory {
                 new MapperData("select * from user where id = %d",User.class));
     }
 
-    private class MapperData<T> {
+    public class MapperData<T> {
         private String sql;
         private Class<T> type;
 

@@ -9,8 +9,8 @@ import com.spring.model.User;
 import java.io.IOException;
 
 public class BootStrap {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException {
+        start();
     }
 
     private static void start() throws IOException {
