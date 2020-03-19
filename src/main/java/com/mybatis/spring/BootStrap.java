@@ -17,9 +17,12 @@ public class BootStrap {
         Configuration configuration = new Configuration();
         configuration.setScanPath("com.mybatis.spring.config.mappers");
         configuration.build();
-        SqlSession sqlSession = new SqlSession(configuration, ExecutorFactory.DEFAULT(configuration));
+        SqlSession sqlSession = new SqlSession(configuration,
+                ExecutorFactory.get(ExecutorFactory.ExecutorType.CACHING.name(), configuration));
+        //SqlSession sqlSession = new SqlSession(configuration, ExecutorFactory.DEFAULT(configuration));
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         User user = userMapper.selectByPrimaryKey(1);
+        user = userMapper.selectByPrimaryKey(1);
         System.out.println(user);
     }
 }

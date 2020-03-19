@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.spring.model.User;
 
 import java.lang.reflect.Field;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +34,8 @@ public class JdbcTest {
     //约定：ORM支持的类型原则上只认java八大基本数据类型+String（为了降低复杂度）
     //尽量使用单表操作，如果是在需要多表操作，可以把数据查出来放到内存，然后在内存中计算
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = null;
         // 原生的JDBC如何操作？
         try {
             // 1,2步被封装成了DataSource，放入到了连接池
@@ -45,7 +43,7 @@ public class JdbcTest {
             // 1，加载驱动器
             Class.forName("com.mysql.jdbc.Driver");
             // 2，建立连接
-            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/spring", "root", "root");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/spring", "root", "root");
 
 
             // 3，创建语句集
@@ -83,6 +81,7 @@ public class JdbcTest {
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
+            conn.rollback();
         }
     }
 
