@@ -1,0 +1,144 @@
+Classfile /E:/JAVA/IdeaProjects/corejava/target/classes/Test.class
+  Last modified 2020-3-20; size 884 bytes
+  MD5 checksum 7066de5d50bc8299bfb965ec9756233d
+  Compiled from "Test.java"
+public class Test
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #6.#41         // java/lang/Object."<init>":()V
+   #2 = Fieldref           #11.#42        // Test.TEST:I
+   #3 = Double             3.14d
+   #5 = Fieldref           #11.#43        // Test.BEST:D
+   #6 = Class              #44            // java/lang/Object
+   #7 = Fieldref           #11.#45        // Test.obj:Ljava/lang/Object;
+   #8 = Methodref          #46.#47        // java/lang/System.currentTimeMillis:()J
+   #9 = Fieldref           #46.#48        // java/lang/System.out:Ljava/io/PrintStream;
+  #10 = Methodref          #49.#50        // java/io/PrintStream.println:(I)V
+  #11 = Class              #51            // Test
+  #12 = Utf8               TEST
+  #13 = Utf8               I
+  #14 = Utf8               ConstantValue
+  #15 = Integer            2
+  #16 = Utf8               BEST
+  #17 = Utf8               D
+  #18 = Utf8               obj
+  #19 = Utf8               Ljava/lang/Object;
+  #20 = Utf8               <init>
+  #21 = Utf8               ()V
+  #22 = Utf8               Code
+  #23 = Utf8               LineNumberTable
+  #24 = Utf8               LocalVariableTable
+  #25 = Utf8               this
+  #26 = Utf8               LTest;
+  #27 = Utf8               methodOne
+  #28 = Utf8               (I)V
+  #29 = Utf8               i
+  #30 = Utf8               j
+  #31 = Utf8               sum
+  #32 = Utf8               acb
+  #33 = Utf8               start
+  #34 = Utf8               J
+  #35 = Utf8               main
+  #36 = Utf8               ([Ljava/lang/String;)V
+  #37 = Utf8               args
+  #38 = Utf8               [Ljava/lang/String;
+  #39 = Utf8               SourceFile
+  #40 = Utf8               Test.java
+  #41 = NameAndType        #20:#21        // "<init>":()V
+  #42 = NameAndType        #12:#13        // TEST:I
+  #43 = NameAndType        #16:#17        // BEST:D
+  #44 = Utf8               java/lang/Object
+  #45 = NameAndType        #18:#19        // obj:Ljava/lang/Object;
+  #46 = Class              #52            // java/lang/System
+  #47 = NameAndType        #53:#54        // currentTimeMillis:()J
+  #48 = NameAndType        #55:#56        // out:Ljava/io/PrintStream;
+  #49 = Class              #57            // java/io/PrintStream
+  #50 = NameAndType        #58:#28        // println:(I)V
+  #51 = Utf8               Test
+  #52 = Utf8               java/lang/System
+  #53 = Utf8               currentTimeMillis
+  #54 = Utf8               ()J
+  #55 = Utf8               out
+  #56 = Utf8               Ljava/io/PrintStream;
+  #57 = Utf8               java/io/PrintStream
+  #58 = Utf8               println
+{
+  public Test();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: iconst_2
+         6: putfield      #2                  // Field TEST:I
+         9: aload_0
+        10: ldc2_w        #3                  // double 3.14d
+        13: putfield      #5                  // Field BEST:D
+        16: aload_0
+        17: new           #6                  // class java/lang/Object
+        20: dup
+        21: invokespecial #1                  // Method java/lang/Object."<init>":()V
+        24: putfield      #7                  // Field obj:Ljava/lang/Object;
+        27: return
+      LineNumberTable:
+        line 7: 0
+        line 9: 4
+        line 11: 9
+        line 13: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      28     0  this   LTest;
+
+  public void methodOne(int);
+    descriptor: (I)V
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=7, args_size=2
+         0: iconst_0
+         1: istore_2
+         2: iload_1
+         3: iload_2
+         4: iadd
+         5: istore_3
+         6: aload_0
+         7: getfield      #7                  // Field obj:Ljava/lang/Object;
+        10: astore        4
+        12: invokestatic  #8                  // Method java/lang/System.currentTimeMillis:()J
+        15: lstore        5
+        17: return
+      LineNumberTable:
+        line 16: 0
+        line 17: 2
+        line 18: 6
+        line 19: 12
+        line 20: 17
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   LTest;
+            0      18     1     i   I
+            2      16     2     j   I
+            6      12     3   sum   I
+           12       6     4   acb   Ljava/lang/Object;
+           17       1     5 start   J
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: getstatic     #9                  // Field java/lang/System.out:Ljava/io/PrintStream;
+         3: iconst_1
+         4: invokevirtual #10                 // Method java/io/PrintStream.println:(I)V
+         7: return
+      LineNumberTable:
+        line 23: 0
+        line 24: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  args   [Ljava/lang/String;
+}
+SourceFile: "Test.java"
