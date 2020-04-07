@@ -1,6 +1,6 @@
 package com.spring.design.factory.simple;
 
-import com.spring.design.factory.Car;
+import com.spring.design.factory.Volkswagen;
 
 /**
  * @author Spring Zhang
@@ -8,8 +8,10 @@ import com.spring.design.factory.Car;
  */
 public class SimpleFactoryTest {
     public static void main(String[] args) {
+        SimpleFactory factory = new SimpleFactory();
         // 这边就是消费者
-        Car car = new SimpleFactory().getCar("BMW");
-        System.out.println(car.getName());
+        Volkswagen sagitar = factory.makeCar("S");
+        Volkswagen lavida = factory.makeCar("L");
+        Volkswagen polo = factory.makeCar("P");
     }
 }

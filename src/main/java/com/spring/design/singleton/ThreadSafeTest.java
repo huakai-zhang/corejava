@@ -1,11 +1,13 @@
 package com.spring.design.singleton;
 
+import com.spring.design.singleton.hungry.Hungry;
 import com.spring.design.singleton.seriable.Seriable;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * 单例模式，保证从系统启动到系统终止，全过程只会产生一个实例
@@ -15,6 +17,28 @@ import java.io.ObjectOutputStream;
  */
 public class ThreadSafeTest {
     public static void main(String[] args) {
+        /*long start = System.currentTimeMillis();
+        int threadNum = 10;
+        final CountDownLatch countDownLatch = new CountDownLatch(threadNum);
+
+        for (int i = 0; i < threadNum; i++) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int j = 0; j < 1000; j++) {
+                        Hungry lazyTwo = Hungry.getInstance();
+                        System.out.println(lazyTwo.hashCode());
+                    }
+                    countDownLatch.countDown();
+                }
+            }).start();
+        }
+
+        countDownLatch.await(); // main线程阻塞，直到计数器变为0，才会继续往下执行！
+
+        long end = System.currentTimeMillis();
+        System.out.println("总耗时：" + (end - start));*/
+
         /*int count = 200;
         CountDownLatch latch = new CountDownLatch(count);
         //long start = System.currentTimeMillis();

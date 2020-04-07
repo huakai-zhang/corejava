@@ -1,9 +1,9 @@
 package com.spring.design.factory.simple;
 
-import com.spring.design.factory.Audi;
-import com.spring.design.factory.Benz;
-import com.spring.design.factory.Bmw;
-import com.spring.design.factory.Car;
+import com.spring.design.factory.Polo;
+import com.spring.design.factory.Volkswagen;
+import com.spring.design.factory.Lavida;
+import com.spring.design.factory.Sagitar;
 
 /**
  * 对于这个工厂来说，
@@ -16,18 +16,18 @@ public class SimpleFactory {
      * 实现统一管理，专业化管理
      * 如果没有工厂模式，小作坊，没有执行标准
      * 这种工厂模式不太合理
-     * @param name
+     * @param carType
      * @return
      */
-    public Car getCar(String name) {
-        if ("BMW".equalsIgnoreCase(name)) {
-            return new Bmw();
-        } else if ("Benz".equalsIgnoreCase(name)) {
-            return new Benz();
-        } else if ("Audi".equalsIgnoreCase(name)) {
-            return new Audi();
+    public Volkswagen makeCar(String carType) {
+        if ("S".equalsIgnoreCase(carType)) {
+            return new Sagitar();
+        } else if ("L".equalsIgnoreCase(carType)) {
+            return new Lavida();
+        } else if ("P".equalsIgnoreCase(carType)) {
+            return new Polo();
         } else {
-            System.out.println("这个产品没有");
+            System.out.println("无该产品");
             return null;
         }
     }

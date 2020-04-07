@@ -23,7 +23,7 @@ public class ConcretePrototype implements Cloneable  {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    protected Object clone() {
         ConcretePrototype prototype = null;
         try {
             prototype = (ConcretePrototype) super.clone();

@@ -15,13 +15,10 @@ public class MyListTest {
 
         // 策略模式
         List<Long> numbers = new ArrayList<>();
-        Collections.sort(numbers, new Comparator<Long>() {
-            @Override
-            // 返回值是固定的，-1，0，1
-            public int compare(Long o1, Long o2) {
-                // 中间逻辑是不一样的
-                return 0;
-            }
+        // 返回值是固定的，-1，0，1
+        Collections.sort(numbers, (o1, o2) -> {
+            // 中间逻辑是不一样的
+            return 0;
         });
     }
 }

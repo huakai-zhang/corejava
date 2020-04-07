@@ -27,8 +27,9 @@ public class UserMapperTest {
     }
 
     @Test
+    @Ignore
     public void selectAll() throws Exception {
-        PageHelper.startPage(2, 10);
+        //PageHelper.startPage(2, 10);
         List<User> userList = mapper.selectAll();
         System.out.println(userList);
     }
@@ -41,7 +42,6 @@ public class UserMapperTest {
     }
 
     @Test
-    @Ignore
     public void insertUser() throws Exception {
         mapper.insertUser(new User("Xiaoxiao"));
     }

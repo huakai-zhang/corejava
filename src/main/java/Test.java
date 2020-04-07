@@ -1,4 +1,4 @@
-
+import java.io.IOException;
 
 /**
  * @author Spring Zhang
@@ -6,20 +6,7 @@
  */
 public class Test {
 
-    private final int TEST = 2;
+    public static void main(String[] args) throws IOException {
 
-    private final double BEST = 3.14D;
-
-    private Object obj = new Object();
-
-    public void methodOne(int i) {
-        int j = 0;
-        int sum = i + j;
-        Object acb = obj;
-        long start = System.currentTimeMillis();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(1);
     }
 }

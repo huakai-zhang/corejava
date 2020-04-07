@@ -34,7 +34,9 @@ public class Employee implements Cloneable {
     }
 
     public void setHireDay(int year, int mouth, int day) {
+        // 如果直接这样设置this.hireDay = hireDay，传入的是一个新的引用的话，无法测试浅拷贝的问题
         Date newHireDay = new GregorianCalendar(year, mouth - 1, day).getTime();
+        // 只是改变了值，为改变引用
         hireDay.setTime(newHireDay.getTime());
     }
 

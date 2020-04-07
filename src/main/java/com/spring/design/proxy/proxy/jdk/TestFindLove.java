@@ -8,9 +8,9 @@ public class TestFindLove {
 		try {
 
 //			
-//			Person obj = (Person)new Meipo().getInstance(new XiaoXingxing());
-//			System.out.println(obj.getClass());
-//			obj.findLove();
+			Person obj = (Person)new Meipo().getInstance(new XiaoXingxing());
+			System.out.println(obj.getClass());
+ 			obj.findLove();
 
 			//原理：
 			//1.拿到被代理对象的引用，然后获取它的接口
@@ -29,9 +29,9 @@ public class TestFindLove {
 			//为什么？
 			//怎么做？
 
-			Person obj = (Person)new GPMeipo().getInstance(new XiaoXingxing());
+/*			Person obj = (Person)new GPMeipo().getInstance(new XiaoXingxing());
 			System.out.println(obj.getClass());
-			obj.findLove();
+			obj.findLove();*/
 
 
 		} catch (Exception e) {

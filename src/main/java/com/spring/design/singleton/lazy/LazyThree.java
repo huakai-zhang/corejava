@@ -15,7 +15,7 @@ public class LazyThree {
     private LazyThree(){
         // 防止反射侵入
         synchronized (LazyThree.class) {
-            if (initialized == false) {
+            if (!initialized) {
                 initialized = !initialized;
             } else {
                 throw new RuntimeException("单例已被侵犯");
@@ -23,7 +23,7 @@ public class LazyThree {
         }
     }
 
-    public static final LazyThree getInstance() {
+    public static LazyThree getInstance() {
         return LazyHolder.LAZY;
     }
 
