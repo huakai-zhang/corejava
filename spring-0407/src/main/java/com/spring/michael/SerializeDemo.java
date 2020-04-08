@@ -24,6 +24,7 @@ public class SerializeDemo {
             person.setSuperAge(36);
             oo.writeObject(person);
             oo.flush();
+            person.setName("Spring1");
             oo.writeObject(person);
             oo.flush();
             // 写一次大小为 83，写两次为88，不是叠加
@@ -42,6 +43,8 @@ public class SerializeDemo {
             Person person2 = (Person) ois.readObject();
             // 存储的对象指向同一个引用
             System.out.println(person1 == person2);
+            System.out.println(person1.getName());
+            System.out.println(person2.getName());
             return person1;
         } catch (Exception e) {
             e.printStackTrace();

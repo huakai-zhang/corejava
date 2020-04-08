@@ -1,5 +1,8 @@
 package com.spring.michael;
 
+import com.baidu.bjf.remoting.protobuf.FieldType;
+import com.baidu.bjf.remoting.protobuf.annotation.Protobuf;
+
 import java.io.Serializable;
 
 public class Person extends SuperPerson implements Serializable {
@@ -8,8 +11,10 @@ public class Person extends SuperPerson implements Serializable {
 
     public static int height = 2;
 
+    @Protobuf(fieldType = FieldType.STRING, order = 1)
     private String name;
 
+    @Protobuf(fieldType = FieldType.INT32, order = 2)
     private transient int age;
 
     public String getName() {
