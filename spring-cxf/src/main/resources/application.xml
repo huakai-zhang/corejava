@@ -21,6 +21,10 @@
          <entry key="json" value="application/json"/>
          <entry key="xml" value="application/xml"/>
       </jaxrs:extensionMappings>
+      <!-- 对象转换的一个providers -->
+      <jaxrs:providers>
+         <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"/>
+      </jaxrs:providers>
    </jaxrs:server>
 
 </beans>

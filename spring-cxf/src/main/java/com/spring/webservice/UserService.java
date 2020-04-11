@@ -2,6 +2,7 @@ package com.spring.webservice;
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
@@ -14,10 +15,13 @@ public interface UserService {
 
     @GET
     @Path("/")
+    // 取决于请求的accept
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     List<User> getUsers();
 
     @DELETE
     @Path("{id}")
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     Response delete(@PathParam("id") int id);
 
     @POST
@@ -30,6 +34,7 @@ public interface UserService {
 
     @GET
     @Path("{id}")
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     User getUser(@PathParam("id") int id);
 
 }

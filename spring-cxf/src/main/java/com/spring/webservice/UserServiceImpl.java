@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response delete(int id) {
-        Storage.users.remove(id);
+        //Storage.users.remove(id);
         Response response = new Response();
         response.setCode("00");
         response.setMsg("success");
