@@ -14,6 +14,7 @@
         <module>corejava</module>
         <module>spring-cxf</module>
         <module>zookeeper-0411</module>
+        <module>zookeeper-lock-javaapi</module>
     </modules>
 
     <properties>
