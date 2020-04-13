@@ -29,4 +29,12 @@ public class UserCenter implements Serializable {
     public void setMc_name(String mc_name) {
         this.mc_name = mc_name;
     }
+
+    @Override
+    public String toString() {
+        return "UserCenter{" +
+                "mc_id=" + mc_id +
+                ", mc_name='" + mc_name + '\'' +
+                '}';
+    }
 }

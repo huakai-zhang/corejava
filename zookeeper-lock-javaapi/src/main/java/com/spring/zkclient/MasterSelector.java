@@ -31,8 +31,10 @@ public class MasterSelector {
 
     ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
 
-    public MasterSelector(UserCenter server) {
+    public MasterSelector(UserCenter server, ZkClient zkClient) {
+        System.out.println("["+server+"] 去争抢master权限");
         this.server = server;
+        this.zkClient = zkClient;
 
         this.dataListener = new IZkDataListener() {
             @Override
@@ -52,12 +54,20 @@ public class MasterSelector {
         // 开始选举
         if (!isRunning) {
             isRunning = true;
+            // 注册节点事件
             zkClient.subscribeDataChanges(MASTER_PATH, dataListener);
+            chooseMaster();
         }
     }
 
     public void stop() {
         // 停止选举
+        if (isRunning) {
+            isRunning = false;
+            scheduledExecutorService.shutdown();
+            zkClient.unsubscribeDataChanges(MASTER_PATH, dataListener);
+            releaseMaster();
+        }
     }
 
     // 具体选master的实现逻辑
@@ -74,9 +84,7 @@ public class MasterSelector {
 
             // 定时器
             // master释放（master 出现故障）
-            scheduledExecutorService.schedule(() -> {
-                releaseMaster();
-            }, 5, TimeUnit.SECONDS);
+            scheduledExecutorService.schedule(this::releaseMaster, 5, TimeUnit.SECONDS);
         } catch (ZkNodeExistsException e) {
             // master已经存在
             UserCenter userCenter = zkClient.readData(MASTER_PATH, true);
