@@ -8,10 +8,17 @@
     <artifactId>java</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>spring-0407</module>
         <module>corejava</module>
         <module>spring-cxf</module>
+        <module>zookeeper-0411</module>
     </modules>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 
 </project>

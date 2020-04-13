@@ -12,8 +12,6 @@
     <artifactId>corejava</artifactId>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
         <mysql-connector-java-version>5.1.31</mysql-connector-java-version>
         <org.springframework-version>4.2.0.RELEASE</org.springframework-version>
         <org.mybatis-version>3.4.0</org.mybatis-version>
