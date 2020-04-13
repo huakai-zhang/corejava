@@ -12,6 +12,7 @@
         <module>spring-0407</module>
         <module>corejava</module>
         <module>spring-cxf</module>
+        <module>zookeeper-lock-javaapi</module>
     </modules>
 
 </project>
