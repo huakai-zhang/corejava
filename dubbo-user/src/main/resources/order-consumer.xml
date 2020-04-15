@@ -14,5 +14,5 @@
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 生成一个远程服务的调用代理 -->
-    <dubbo:reference id="orderService" interface="com.spring.dubbo.order.IOrderService"/>
+    <dubbo:reference id="orderService" interface="com.spring.dubbo.order.IOrderService" version="2.0.0"/>
 </beans>
