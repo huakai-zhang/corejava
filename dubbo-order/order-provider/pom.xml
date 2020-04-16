@@ -44,5 +44,9 @@
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.spring.dubbo.user</groupId>
+            <artifactId>user-api</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -16,4 +16,9 @@ public class UserService implements IUserService {
         response.setMsg("登录成功");
         return response;
     }
+
+    @Override
+    public void toLogin(String name) {
+        System.out.println("来自：" + name + "，等待登录调用。");
+    }
 }

@@ -6,4 +6,5 @@ package com.spring.dubbo.user;
  */
 public interface IUserService {
     UserResponse login(String username, String password);
+    void toLogin(String name);
 }

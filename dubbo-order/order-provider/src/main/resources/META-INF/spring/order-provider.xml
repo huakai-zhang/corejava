@@ -17,7 +17,7 @@
     <!--<dubbo:registry address="zookeeper://192.168.174.128:2181?backup=192.168.174.129:2181,192.168.174.130:2181"/>-->
     <!-- 写在前面的不一定是leader，等同于下面 -->
     <!--<dubbo:registry protocol="zookeeper" address="192.168.174.128:2181,192.168.174.129:2181,192.168.174.130:2181"/>-->
-    <dubbo:registry address="zookeeper://192.168.174.128:2181"/>
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 当前服务发布所依赖的协议：webservice,Thrift,Hessian,http -->
     <dubbo:protocol name="dubbo" port="20880"/>
@@ -25,4 +25,6 @@
     <!-- 服务发布的配置，需要暴露的服务接口 -->
     <dubbo:service interface="com.spring.dubbo.order.IOrderService" ref="orderService" protocol="dubbo" version="1.0.0"/>
     <dubbo:service interface="com.spring.dubbo.order.IOrderService" ref="orderService2" protocol="dubbo" version="2.0.0"/>
+
+    <import resource="classpath*:META-INF/client/user-customer.xml"/>
 </beans>
