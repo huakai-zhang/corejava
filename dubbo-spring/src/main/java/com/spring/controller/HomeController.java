@@ -1,6 +1,9 @@
 package com.spring.controller;
 
-import com.spring.services.UserService;
+import com.spring.dubbo.order.DoOrderRequest;
+import com.spring.dubbo.order.IOrderService;
+import com.spring.dubbo.user.IUserService;
+import com.spring.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,11 +14,22 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
     @Autowired
-    private UserService userService;
+    private CustomerService customerService;
+
+    // 按名称注入，变量名需要与api.jar提供的id相同
+    @Autowired
+    IOrderService orderServiceSpring;
+
+    @Autowired
+    IUserService userService;
 
     @RequestMapping(value = "/index")
     public ModelAndView index(){
-        userService.insert();
+        DoOrderRequest request = new DoOrderRequest();
+        request.setName("dubbo-spring");
+        orderServiceSpring.doOrder(request);
+        userService.login("spring", "1234");
+        customerService.insert();
         return new ModelAndView("index");
     }
 
