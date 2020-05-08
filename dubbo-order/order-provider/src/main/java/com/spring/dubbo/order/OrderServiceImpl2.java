@@ -1,7 +1,5 @@
 package com.spring.dubbo.order;
 
-import com.spring.dubbo.user.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,12 +9,8 @@ import org.springframework.stereotype.Service;
 @Service(value = "orderService2")
 public class OrderServiceImpl2 implements IOrderService {
 
-    @Autowired
-    IUserService userService;
-
     @Override
     public DoOrderResponse doOrder(DoOrderRequest request) {
-        userService.toLogin("order模块");
         System.out.println("曾经来过2.0：" + request);
         DoOrderResponse response = new DoOrderResponse();
         response.setCode("11111");

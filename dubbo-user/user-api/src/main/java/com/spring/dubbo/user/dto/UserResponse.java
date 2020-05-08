@@ -1,4 +1,4 @@
-package com.spring.dubbo.user;
+package com.spring.dubbo.user.dto;
 
 import java.io.Serializable;
 

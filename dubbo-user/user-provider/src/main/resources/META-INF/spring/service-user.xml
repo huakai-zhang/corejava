@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd" default-autowire="byName">
 
-    <!-- 生成一个远程服务的调用代理 -->
-    <dubbo:reference id="orderServiceSpring" interface="com.spring.dubbo.order.IOrderService" protocol="dubbo"/>
+    <!-- 服务发布的配置，需要暴露的服务接口 -->
+    <dubbo:service interface="com.spring.dubbo.user.IUserService" ref="userService"/>
 
 </beans>

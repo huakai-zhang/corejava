@@ -14,7 +14,7 @@
     </context:component-scan>
 
     <dubbo:application name="dubbo-spring"/>
-    <dubbo:registry protocol="zookeeper" file="/Users/spring_zhang/Code/java/dubbo-spring/dubbo.cache" address="127.0.0.1:2181"/>
+    <dubbo:registry protocol="zookeeper" group="dubbo-dev" file="d:/cache/dubbo.cache" address="192.168.174.128:2181"/>
 
     <import resource="classpath*:META-INF/client/order-customer.xml"/>
     <import resource="classpath*:META-INF/client/user-customer.xml"/>
