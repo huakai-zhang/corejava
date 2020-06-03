@@ -1,4 +1,4 @@
-package com.nio;
+package com.nio.buffer;
 
 import java.nio.IntBuffer;
 
@@ -30,5 +30,5 @@ public class TestIntBuffer {
             int j = buffer.get();  
             System.out.print(j + "  ");  
         }
-	}  
+	}
 }

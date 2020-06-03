@@ -43,9 +43,10 @@ public class NIOServer {
 		
 		//设置打开端口
 		server.bind(new InetSocketAddress(this.port));
+		// 默认为阻塞，需要手动设置为非阻塞
 		server.configureBlocking(false);
 
-		//排队叫号开始工作
+		//选择器（排队叫号）开始工作
 		selector = Selector.open();
 		server.register(selector, SelectionKey.OP_ACCEPT);
 		
@@ -65,7 +66,7 @@ public class NIOServer {
             Set<SelectionKey> keys = selector.selectedKeys();  //可以通过这个方法，知道可用通道的集合
             Iterator<SelectionKey> iterator = keys.iterator();
             while(iterator.hasNext()) {
-				SelectionKey key = (SelectionKey) iterator.next();
+				SelectionKey key = iterator.next();
 				//处理一个，号码就要被消除
 				//过号不候
 				iterator.remove();
@@ -101,19 +102,16 @@ public class NIOServer {
             ByteBuffer buff = ByteBuffer.allocate(1024);
             StringBuilder content = new StringBuilder();
             try{
-                while(client.read(buff) > 0)
-                {
+                while(client.read(buff) > 0) {
                     buff.flip();
                     content.append(charset.decode(buff));
-                    
                 }
                 //System.out.println("从IP地址为：" + sc.getRemoteAddress() + "的获取到消息: " + content);
                 //将此对应的channel设置为准备下一次接受数据
                 key.interestOps(SelectionKey.OP_READ);
             }catch (IOException io){
             	key.cancel();
-                if(key.channel() != null)
-                {
+                if(key.channel() != null) {
                 	key.channel().close();
                 }
             }
