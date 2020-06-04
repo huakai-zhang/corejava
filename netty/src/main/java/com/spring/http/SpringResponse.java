@@ -18,6 +18,7 @@ public class SpringResponse {
 
     public void write(String out) throws UnsupportedEncodingException {
         try {
+            if (out == null) {return;}
             FullHttpResponse response = new DefaultFullHttpResponse(
                     HttpVersion.HTTP_1_1,
                     HttpResponseStatus.OK,

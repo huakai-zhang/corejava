@@ -5,15 +5,11 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.http.HttpResponseDecoder;
+import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
-
-import java.net.ServerSocket;
-import java.nio.channels.ServerSocketChannel;
 
 public class SpringTomcat {
 
@@ -45,7 +41,7 @@ public class SpringTomcat {
                             // 业务逻辑链路，编码器
                             socketChannel.pipeline().addLast(new HttpResponseEncoder());
                             // 解码器
-                            socketChannel.pipeline().addLast(new HttpResponseDecoder());
+                            socketChannel.pipeline().addLast(new HttpRequestDecoder());
 
                             // 业务逻辑处理
                             socketChannel.pipeline().addLast(new SpringTomcatHandler());
