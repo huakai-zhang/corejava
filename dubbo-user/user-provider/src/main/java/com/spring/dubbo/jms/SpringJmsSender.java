@@ -14,5 +14,4 @@ public class SpringJmsSender {
 
         jmsTemplate.send(session -> session.createTextMessage("Hello,晓晓"));
     }
-
 }
