@@ -10,7 +10,8 @@ import javax.jms.*;
  */
 public class JmsSender {
     public static void main(String[] args) {
-        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://192.168.174.128:61616");
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
+                "failover:(tcp://192.168.174.128:61616,tcp://192.168.174.129:61616)?randomize=false");
         Connection connection = null;
         try {
             // 创建连接
