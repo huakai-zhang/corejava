@@ -22,5 +22,4 @@ public class RedisManager {
         }
         throw new Exception("Jedispool was not init");
     }
-
 }
