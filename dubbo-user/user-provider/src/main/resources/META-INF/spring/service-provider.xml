@@ -17,15 +17,15 @@
     <!--<dubbo:registry protocol="zookeeper" address="192.168.174.128:2181,192.168.174.129:2181,192.168.174.130:2181"/>-->
     <dubbo:registry protocol="zookeeper"
                     address="${dubbo.zk.servers}"
-                    group="${dubbo.zk.group}"
-                    file="${dubbo.cache.dir}/dubbo-order.cache"/>
+                    group="${dubbo.zk.group}"/>
+                    <!--file="${dubbo.cache.dir}/dubbo-order.cache"-->
 
     <!-- 当前服务发布所依赖的协议：webservice,Thrift,Hessian,http -->
     <dubbo:protocol name="dubbo"
                     port="${dubbo.service.provider.port}"
                     threadpool="cached"
-                    threads="${dubbo.service.provider.threads:200}"
-                    accesslog="${dubbo.protocol.accesslog}"/>
+                    threads="${dubbo.service.provider.threads:200}"/>
+                    <!--accesslog="${dubbo.protocol.accesslog}"-->
 
     <!--<import resource="classpath*:META-INF/client/user-customer.xml"/>-->
 </beans>

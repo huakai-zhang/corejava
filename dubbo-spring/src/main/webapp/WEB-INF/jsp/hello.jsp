@@ -18,30 +18,6 @@
     <script src="system/js/jquery.js"></script>
 </head>
 <body>
-aaa
-<button onclick="toLogin()">登录</button>
+欢迎您！！！
 </body>
-<script>
-    $(function () {
-        var basePath = "<%=basePath%>";
-        console.log(basePath)
-    })
-
-    function toLogin() {
-        $.ajax({
-            url:  "home/login",
-            type: "POST",
-            dataType: "json",
-            data: {
-                "name" : "spring"
-            },
-            async: false,
-            success: function (data) {
-                if (data.code == "000000") {
-                    window.location.href = "home/hello";
-                }
-            }
-        });
-    }
-</script>
 </html>

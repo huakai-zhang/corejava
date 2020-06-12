@@ -56,6 +56,7 @@ public class LoginIntercept extends HandlerInterceptorAdapter {
         UserResponse userResponse = userService.checkAuth(userRequest);
         if ("000000".equals(userResponse.getCode())) {
             ((BaseController) action).setUid(userResponse.getUid());
+            return true;
         }
         return false;
     }

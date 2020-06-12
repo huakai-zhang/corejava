@@ -10,8 +10,9 @@ import com.spring.suport.BaseController;
 import com.spring.suport.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,18 +38,19 @@ public class HomeController extends BaseController {
         return new ModelAndView("index");
     }
 
-    @PostMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
     @Anonymous
-    public @ResponseBody String login(HttpServletResponse httpServletResponse){
+    public ResponseResult login(@RequestParam(value= "name") String name, HttpServletResponse httpServletResponse){
         DoOrderRequest request = new DoOrderRequest();
         request.setName("dubbo-spring");
         //orderServiceSpring.doOrder(request);
-        UserResponse response = userService.login("spring", "1234");
+        UserResponse response = userService.login(name, "1234");
         //customerService.insert();
         if ("11111".equals(response.getCode())) {
             httpServletResponse.addHeader("Set-Cookie", "access_token=" + response.getToken() + ";Path=/;HttpOnly");
         }
-        return "000000";
+        return new ResponseResult("000000", "登录成功");
     }
 
     @RequestMapping(value = "/hello")
