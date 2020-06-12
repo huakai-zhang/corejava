@@ -13,6 +13,10 @@ public class UserResponse implements Serializable {
 
     private String msg;
 
+    private String token;
+
+    private String uid;
+
     public String getCode() {
         return code;
     }
@@ -27,5 +31,21 @@ public class UserResponse implements Serializable {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

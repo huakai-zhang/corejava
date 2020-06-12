@@ -2,6 +2,7 @@ package com.spring.dubbo.user;
 
 import com.spring.dubbo.user.dto.DebitRequest;
 import com.spring.dubbo.user.dto.DebitResponse;
+import com.spring.dubbo.user.dto.UserRequest;
 import com.spring.dubbo.user.dto.UserResponse;
 
 /**
@@ -13,4 +14,6 @@ public interface IUserService {
     void toLogin(String name);
 
     DebitResponse debit(DebitRequest request);
+
+    UserResponse checkAuth(UserRequest request);
 }

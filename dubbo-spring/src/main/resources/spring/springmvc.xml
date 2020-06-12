@@ -19,6 +19,14 @@
     <!-- 对静态资源文件的访问 -->
     <mvc:resources location="/system/" mapping="/system/**"/>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/system/**"/>
+            <bean class="com.spring.intercept.LoginIntercept"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!-- 配置jsp视图 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
