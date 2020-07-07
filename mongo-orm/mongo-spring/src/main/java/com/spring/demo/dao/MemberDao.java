@@ -33,6 +33,7 @@ public class MemberDao extends BaseDaoSupport<Member, Long> {
         return "id";
     }
 
+    @Override
     @Resource(name = "mongoTemplate")
     protected void setTemplate(MongoTemplate template) {
         super.setTemplate(template);
