@@ -16,21 +16,21 @@ import java.util.List;
 @Repository
 public class MemberDao extends BaseDaoSupport<Member, Long> {
 
-    public void getByName(String name) {
+    public List<Member> getById(String id) {
         QueryRule queryRule = QueryRule.getInstance();
-
-        super.find(queryRule);
+        queryRule.andEqual(this.getPKColumn(), id);
+        return super.find(queryRule);
     }
 
     public List<Member> getAll() {
         QueryRule queryRule = QueryRule.getInstance();
-
+        queryRule.addDescOrder("age");
         return super.find(queryRule);
     }
 
     @Override
     protected String getPKColumn() {
-        return "id";
+        return "_id";
     }
 
     @Override

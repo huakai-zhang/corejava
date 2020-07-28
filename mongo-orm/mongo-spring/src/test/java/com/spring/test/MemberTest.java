@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -37,6 +36,7 @@ public class MemberTest {
         /*Query query = new Query();
         List<Member> result = mongoTemplate.find(query, Member.class);*/
 
+        //List<Member> result = memberDao.getById("5f042bd76de37d56441a9120");
         List<Member> result = memberDao.getAll();
         System.out.println(JSON.toJSONString(result, true));
     }
