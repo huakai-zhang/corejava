@@ -22,7 +22,7 @@ public class Provider {
         // 参数2，交换机类型，direct 路由模式
         channel.exchangeDeclare("logs_direct", "direct");
 
-        String routingKey = "error";
+        String routingKey = "info";
         // 发送消息
         channel.basicPublish("logs_direct", routingKey, null, ("direct type message, key: " + routingKey).getBytes());
 

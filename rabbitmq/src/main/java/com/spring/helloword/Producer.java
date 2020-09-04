@@ -30,7 +30,7 @@ public class Producer {
         // 参数3，是否独占队列
         // 参数4，是否在消费完成后自动删除队列
         // 参数5，额外附加参数
-        channel.queueDeclare("hello", false, false, false, null);
+        channel.queueDeclare("hello", true, false, false, null);
 
         // 发布消息
         // 参数1，交换机名称
