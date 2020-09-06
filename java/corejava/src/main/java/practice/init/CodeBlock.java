@@ -1,4 +1,4 @@
-package jvm;
+package practice.init;
 
 class CodeSpring {
     public CodeSpring() {

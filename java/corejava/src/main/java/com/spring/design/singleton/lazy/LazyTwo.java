@@ -13,9 +13,13 @@ public class LazyTwo {
 
     // 不使用synchronized，会出现线程不安全
     // 使用synchronized，性能较差
-    public synchronized static LazyTwo getInstance() {
+    public static LazyTwo getInstance() {
         if (lazy == null) {
-            lazy = new LazyTwo();
+            synchronized (LazyTwo.class) {
+                if (lazy == null) {
+                    lazy = new LazyTwo();
+                }
+            }
         }
         return lazy;
     }
