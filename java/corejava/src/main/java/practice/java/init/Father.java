@@ -1,4 +1,4 @@
-package practice.init;
+package practice.java.init;
 
 public class Father {
     private int i = test();

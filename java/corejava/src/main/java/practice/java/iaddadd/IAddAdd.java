@@ -1,4 +1,4 @@
-package practice.iaddadd;
+package practice.java.iaddadd;
 
 public class IAddAdd {
     public static void main(String[] args) {

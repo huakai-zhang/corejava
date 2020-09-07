@@ -1,4 +1,4 @@
-package practice.singleton;
+package practice.java.singleton;
 
 /**
  * com.spring.design.singleton

@@ -1,4 +1,4 @@
-package practice.param;
+package practice.java.param;
 
 import jvm.Person;
 

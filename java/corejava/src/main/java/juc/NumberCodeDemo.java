@@ -27,7 +27,7 @@ class Resource {
         }
     }
 
-    public synchronized void decrement(int i) throws InterruptedException {
+    public void decrement(int i) throws InterruptedException {
         lock.lock();
         try {
             while (number == 0) {
