@@ -30,3 +30,4 @@ public class ShareData {
         count++;
     }
 }
+// 200  607  607  370  714  807  299  453  200  907  count= 907
