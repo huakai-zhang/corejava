@@ -82,7 +82,7 @@ public class GPPorxy {
 		}
 		
 		src.append("}");
-		
+		System.out.println(src.toString());
 		return src.toString();
 	}
 }
