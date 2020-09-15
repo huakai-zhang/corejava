@@ -1,6 +1,4 @@
-package practice.java.param;
-
-import com.jvm.Person;
+package com.jvm;
 
 import java.util.ArrayList;
 import java.util.List;

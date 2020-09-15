@@ -1,10 +1,7 @@
+
 import java.util.Arrays;
 import java.util.Iterator;
 
-/**
- * @author Spring 花开不合阳春暮
- * @since 2020/8/7
- */
 public class Test {
 
    ThreadLocal<Long> longLocal = new ThreadLocal<>();
