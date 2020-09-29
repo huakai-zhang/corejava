@@ -21,9 +21,9 @@ import java.util.Random;
  * -Xms10m -Xmx10m -XX:+PrintGCDetails -XX:+PrintCommandLineFlags -XX:+UseG1GC
  */
 public class HelloGC {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         System.out.println("Hello GC");
-        try {
+        /*try {
             String str = "Spring";
             while(true) {
                 str += str + new Random().nextInt(7777777) + new Random().nextInt(88888888);
@@ -31,6 +31,7 @@ public class HelloGC {
             }
         } catch (Throwable r) {
             r.printStackTrace();
-        }
+        }*/
+        //Thread.sleep(Integer.MAX_VALUE);
     }
 }
