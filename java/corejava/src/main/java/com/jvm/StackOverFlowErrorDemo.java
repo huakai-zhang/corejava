@@ -1,6 +1,6 @@
 package com.jvm;
 
-public class Test {
+public class StackOverFlowErrorDemo {
     public static void main(String[] args) {
         m1();
     }
