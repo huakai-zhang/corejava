@@ -1,87 +1,180 @@
+import java.util.concurrent.*;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
-import java.util.Arrays;
-import java.util.Iterator;
+class MyThread extends Thread {
+   private int number = 1;
+   private Lock lock = new ReentrantLock();
+   private Condition condition1 = lock.newCondition();
+   private Condition condition2 = lock.newCondition();
 
-public class Test {
-
-   ThreadLocal<Long> longLocal = new ThreadLocal<>();
-   public void set() {
-
-         longLocal.set(Thread.currentThread().getId());
-
-
+   void testA () {
+      lock.lock();
+      try {
+         System.out.println(1);
+         System.out.println(2);
+         number = 3;
+         condition2.signal();
+         // number != 1 阻塞
+         while (number != 1) {
+            condition1.await();
+         }
+         System.out.println(3);
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      } finally {
+         lock.unlock();
+      }
    }
-   public long getLong() {
 
-         return longLocal.get();
-
+   void testB () {
+      lock.lock();
+      try {
+         // number = 1 阻塞
+         while (number != 2 && number != 3) {
+            condition2.await();
+         }
+         System.out.println("B");
+         number = 1;
+         condition1.signal();
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      } finally {
+         lock.unlock();
+      }
    }
 
-   public static void main(String[] args) {
-
-      Test test = new Test();
-      test.set();
-      //注意:没有set之前，直接get，报null异常了
-      System.out.println("-------threadLocal value-------" + test.getLong());
+   void run1() {
+      synchronized (this) {
+         while (number < 1000) {
+            try {
+               //打印是否执行该方法
+               System.out.println(Thread.currentThread().getName() + " run1: "+number++);
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+         }
+      }
    }
-
-   public static  void bubbleSort(int[] list) {
-      for (int i = 0; i < list.length - 1; i++) {
-         for (int j = list.length - 1; j > i; j--) {
-            if (list[j - 1] > list[j]) {
-               int temp = list[j - 1];
-               list[j - 1] = list[j];
-               list[j] = temp;
+   void run2() {
+      synchronized (this) {
+         while (number < 1000) {
+            try {
+               //打印是否执行该方法
+               System.out.println(Thread.currentThread().getName() + " run2: "+number++);
+            } catch (Exception e) {
+               e.printStackTrace();
             }
          }
       }
    }
 
-   public static void quickSort(int[] list, int leftIndex, int rightIndex) {
-      if (leftIndex > rightIndex) {
-         return;
-      }
-
-      int left = leftIndex;
-      int right = rightIndex;
-      int base = list[left];
-
-      while (left != right) {
-         while (left < right && list[right] >= base) {
-            right--;
-         }
-
-         while (left < right && list[left] <= base) {
-            left++;
-         }
-
-         if (left < right) {
-            int temp = list[left];
-            list[left] = list[right];
-            list[right] = temp;
+   public Runnable runnable1 = new Runnable() {
+      @Override
+      public void run() {
+         synchronized (this) {
+            //同步锁
+            while (number < 1000) {
+               try {
+                  //打印是否执行该方法
+                  System.out.println(Thread.currentThread().getName() + " run1: " + number++);
+               } catch (Exception e) {
+                  e.printStackTrace();
+               }
+            }
+            System.out.println(this);
          }
       }
+   };
 
-      list[leftIndex] = list[left];
-      list[left] = base;
+   public Runnable runnable2 = new Runnable() {
+      @Override
+      public void run() {
+         synchronized (this) {
+            //同步锁
+            while (number < 1000) {
+               try {
+                  //打印是否执行该方法
+                  System.out.println(Thread.currentThread().getName() + " run2: " + number++);
+               } catch (Exception e) {
+                  e.printStackTrace();
+               }
+            }
+            System.out.println(this);
+         }
+      }
+   };
+}
+class MyCallable implements Callable<Integer> {
 
-      quickSort(list, leftIndex, left - 1);
-      quickSort(list, left + 1, rightIndex);
+   @Override
+   public Integer call() throws Exception {
+      System.out.println("B");
+      TimeUnit.SECONDS.sleep(4);
+      return 1;
    }
+}
+public class Test {
+   private static int num = 0;
 
-   public static int select(int[] list, int key) {
-      int i = 0;
-      int j = list.length - 1;
-      while (i <= j) {
-         int mid = (i + j) / 2;
-         if (list[mid] > key) {
-            j = mid - 1;
-         } else if (list[mid] < key) {
-            i = mid + 1;
-         } else {
-            return mid;
-         }
+   public static void main(String[] args) throws Exception {
+      /*MyThread myThread = new MyThread();
+      new Thread(() -> myThread.testB()).start();
+
+      try {
+         Thread.sleep(100);
+      } catch (InterruptedException e) {
+         e.printStackTrace();
       }
-      return - (i + 1);
+
+      new Thread(() -> myThread.testA()).start();*/
+
+      /*System.out.println(1);
+      System.out.println(2);
+      FutureTask futureTask = new FutureTask(new MyCallable());
+      new Thread(futureTask, "A").start();
+      futureTask.get();
+      System.out.println(3);*/
+
+      /*Semaphore semaphore = new Semaphore(0);
+      Thread a = new Thread(() -> {
+         //模拟耗时操作之后初始化变量 num
+         try {
+            Thread.sleep(1000);
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+         num = 1;
+         System.out.println("a计算完成");
+         //初始化完参数后释放两个 permit
+         semaphore.release(2);
+      });
+
+      Thread b = new Thread(() -> {
+         try {
+            semaphore.acquire();
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+         System.out.println("b:" + num);
+      });
+
+      Thread c = new Thread(() -> {
+         try {
+            semaphore.acquire();
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+         System.out.println("c:" + num);
+      });
+
+      a.start();
+      b.start();
+      c.start();*/
+      MyThread myThread = new MyThread();
+      new Thread(myThread.runnable1, "A").start();
+
+      new Thread(myThread.runnable2, "B").start();
    }
 }
