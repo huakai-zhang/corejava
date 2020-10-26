@@ -13,7 +13,7 @@ public class Consumer1 {
 
     public static void main(String[] args) throws IOException {
         Connection connection = RabbitMQUtils.getConnection();
-        Channel channel = connection.createChannel();
+        final Channel channel = connection.createChannel();
 
         // 通道绑定交换机
         channel.exchangeDeclare("topics", "topic");
@@ -24,10 +24,16 @@ public class Consumer1 {
         channel.queueBind(queueName, "topics",  "user.*");
 
         // 消费消息
-        channel.basicConsume(queueName, true, new DefaultConsumer(channel){
+        channel.basicConsume(queueName, false, new DefaultConsumer(channel){
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-                System.out.println("消费者1：" + new String(body));
+                System.out.println("消费者1：" + new String(body) + "====" + envelope.getDeliveryTag());
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                channel.basicAck(envelope.getDeliveryTag(), false);
             }
         });
     }

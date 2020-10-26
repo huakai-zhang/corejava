@@ -20,7 +20,7 @@ public class RabbitMQUtils {
         // 设置端口号
         connectionFactory.setPort(5672);
         // 设置连接那个虚拟主机
-        connectionFactory.setVirtualHost("/ems");
+        connectionFactory.setVirtualHost("/");
         // 设置访问虚拟主机的用户名和密码
         connectionFactory.setUsername("guest");
         connectionFactory.setPassword("guest");

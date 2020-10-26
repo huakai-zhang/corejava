@@ -14,7 +14,7 @@
     </listener>
     
     <servlet>
-        <servlet-name>dispatcher</servlet-name>
+        <servlet-name>springmvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
@@ -27,7 +27,7 @@
     <!-- 后台只返回JSON，前端HTML页面通过js调用ajax请求获取后台的数据 -->
     <!-- 通过前端的js模版框架去渲染，减轻服务器的负担，视图和后台业务逻辑完全解耦 -->
     <servlet-mapping>
-        <servlet-name>dispatcher</servlet-name>
+        <servlet-name>springmvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>

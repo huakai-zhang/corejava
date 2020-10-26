@@ -1,7 +1,6 @@
 package com.spring.topic;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.*;
 import com.spring.utils.RabbitMQUtils;
 
 import java.io.IOException;
@@ -17,6 +16,37 @@ public class Provider {
         Connection connection = RabbitMQUtils.getConnection();
 
         Channel channel = connection.createChannel();
+
+        // 指定我们的消息投递模式: 消息的确认模式
+        channel.confirmSelect();
+
+        // 添加一个确认监听
+        channel.addConfirmListener(new ConfirmListener() {
+            @Override
+            public void handleAck(long deliveryTag, boolean multiple) throws IOException {
+                System.err.println(deliveryTag);
+                System.err.println("-------ack!-----------");
+            }
+
+            @Override
+            public void handleNack(long deliveryTag, boolean multiple) throws IOException {
+                System.err.println("-------no ack!-----------");
+            }
+        });
+
+        channel.addReturnListener(new ReturnListener() {
+            public void handleReturn(int replyCode, String replyText,
+                                     String exchange, String routingKey,
+                                     AMQP.BasicProperties properties, byte[] body)
+                    throws IOException {
+                String msg = new String(body);
+                System.out.println("replyText:"+replyText);
+                System.out.println("exchange:"+exchange);
+                System.out.println("routingKey:"+routingKey);
+                System.out.println("msg:"+msg);
+            }
+        });
+
         // 将通道声明指定的交换机
         // 参数1，交换机名称
         // 参数2，交换机类型，topic 路由模式
@@ -24,9 +54,15 @@ public class Provider {
 
         String routingKey = "user.save";
         // 发送消息
-        channel.basicPublish("topics", routingKey, null, ("topic type message, key: " + routingKey).getBytes());
+        for (int i = 0; i < 10; i++) {
+            channel.basicPublish("topics", routingKey, null, ("topic type message, key: " + routingKey).getBytes());
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
         RabbitMQUtils.closeConnectAndChanel(channel, connection);
-
     }
 }
