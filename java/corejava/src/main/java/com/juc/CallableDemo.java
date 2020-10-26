@@ -19,7 +19,7 @@ public class CallableDemo {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         FutureTask futureTask = new FutureTask(new MyThread());
         new Thread(futureTask, "A").start();
-        System.out.println("main*******计算完成");
         System.out.println(futureTask.get());
+        System.out.println("main*******计算完成");
     }
 }
