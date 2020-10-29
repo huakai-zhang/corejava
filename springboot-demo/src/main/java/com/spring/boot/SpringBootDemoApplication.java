@@ -1,13 +1,13 @@
-package com.spring.swagger;
+package com.spring.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SwaggerDemoApplication {
+public class SpringBootDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SwaggerDemoApplication.class, args);
+        SpringApplication.run(SpringBootDemoApplication.class, args);
     }
 
 }

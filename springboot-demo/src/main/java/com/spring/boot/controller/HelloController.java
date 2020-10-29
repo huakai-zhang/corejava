@@ -1,6 +1,6 @@
-package com.spring.swagger.controller;
+package com.spring.boot.controller;
 
-import com.spring.swagger.entity.User;
+import com.spring.boot.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
