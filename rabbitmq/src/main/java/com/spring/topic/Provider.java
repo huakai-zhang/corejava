@@ -20,11 +20,10 @@ public class Provider {
         // 指定我们的消息投递模式: 消息的确认模式
         channel.confirmSelect();
 
-        // 添加一个确认监听
+        // 添加一个异步确认监听
         channel.addConfirmListener(new ConfirmListener() {
             @Override
             public void handleAck(long deliveryTag, boolean multiple) throws IOException {
-                System.err.println(deliveryTag);
                 System.err.println("-------ack!-----------");
             }
 
@@ -34,7 +33,9 @@ public class Provider {
             }
         });
 
+        // 监听器收到了无法路由的消息
         channel.addReturnListener(new ReturnListener() {
+            @Override
             public void handleReturn(int replyCode, String replyText,
                                      String exchange, String routingKey,
                                      AMQP.BasicProperties properties, byte[] body)
@@ -57,12 +58,29 @@ public class Provider {
         for (int i = 0; i < 10; i++) {
             channel.basicPublish("topics", routingKey, null, ("topic type message, key: " + routingKey).getBytes());
             try {
-                Thread.sleep(10000);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
 
+        // 无法路由的情况
+        //String routingKey = "user1212.save";
+        // 第三个参数设置mandatory，如果mandatory为false，消息会被直接丢弃
+        //channel.basicPublish("topics", routingKey, true, null, ("topic type message, key: " + routingKey).getBytes());
+
+
+        /*try {
+            // 普通confirm，发送一条确认一条
+            *//*if (channel.waitForConfirms()) {
+                System.out.println("消息发送完毕");
+            }*//*
+            // 批量确认
+            channel.waitForConfirmsOrDie();
+            System.out.println("消息全部发送完毕");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
         RabbitMQUtils.closeConnectAndChanel(channel, connection);
     }
 }

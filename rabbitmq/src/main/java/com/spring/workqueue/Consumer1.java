@@ -4,6 +4,8 @@ import com.rabbitmq.client.*;
 import com.spring.utils.RabbitMQUtils;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -20,6 +22,13 @@ public class Consumer1 {
 
         // 每次只能消费一个消息
         channel.basicQos(1);
+
+        // 绑定死信交换机
+        //Map<String, Object> arguments = new HashMap<String, Object>();
+        //arguments.put("x-dead-letter-exchange", "DLX_EXCHANGE");
+        //map.put("x-message-ttl", 11000); // 队列中的消息未被消费 11 秒后过期
+        //channel.queueDeclare("work", true, false, false, arguments);
+
         // 参数2，是否是持久化队列，要与生产者保持一致
         channel.queueDeclare("work", true, false, false, null);
 

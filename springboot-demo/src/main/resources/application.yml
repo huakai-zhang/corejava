@@ -1,0 +1,16 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    publisher-confirms: true
+    listener:
+      simple:
+        acknowledge-mode: manual # 手动应答
+        # NONE 自动应答
+        # AUTO
+          # 1.没有异常，自动ACK
+          # 2.抛出ImmediateAcknowledgeAmqpException异常时，消费者会发送 ACK
+          # 3.抛出AmqpRejectAndDontRequeueException异常时，消息被拒绝,不重新入队
+          # 4.其他的异常，消息被拒绝，重新入队
