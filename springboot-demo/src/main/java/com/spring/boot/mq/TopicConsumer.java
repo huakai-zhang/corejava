@@ -46,4 +46,13 @@ public class TopicConsumer {
         System.out.println("message2 = " + message);
     }
 
+    @RabbitListener(queuesToDeclare = @Queue("work"))
+    public void receive(String message) {
+        System.out.println("work-message1 = " + message);
+    }
+
+    @RabbitListener(queuesToDeclare = @Queue("work"))
+    public void receive23(String message) {
+        System.out.println("work-message2 = " + message);
+    }
 }
