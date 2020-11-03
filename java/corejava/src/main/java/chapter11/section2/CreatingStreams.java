@@ -6,9 +6,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class CreatingStreams {
@@ -32,6 +34,13 @@ public class CreatingStreams {
     public static void main(String[] args) throws IOException {
         Path path = Paths.get("E:\\IDEAFile\\corejava\\src\\chapter9\\section2\\alice30.txt");
         String contents = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+
+        //通过Arrays.stream
+        // 基本类型
+        int[] arr = new int[]{1,2,34,5};
+        IntStream intStream = Arrays.stream(arr);
+        // 引用类型
+        Stream<String> studentStream = Arrays.stream(contents.split("\\PL+"));
 
         Stream<String> words = Stream.of(contents.split("\\PL+"));
         show("words", words);

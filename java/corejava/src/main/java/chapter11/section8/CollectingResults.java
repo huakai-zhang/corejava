@@ -1,5 +1,7 @@
 package chapter11.section8;
 
+import chapter4.section3.Employee;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -54,6 +56,14 @@ public class CollectingResults {
         System.out.println("Joining: " + result);
         result = noVowels().limit(10).collect(Collectors.joining(", "));
         System.out.println("Joining with commas: " + result);
+
+        List<Employee> personList = new ArrayList<Employee>();
+        personList.add(new Employee("Tom", 8900));
+        personList.add(new Employee("Jack", 7000));
+        personList.add(new Employee("Lily", 9000));
+
+        Double averageSalary = personList.stream().collect(Collectors.averagingDouble(Employee::getSalary));
+        System.out.println(averageSalary);  // 结果：8300
 
         IntSummaryStatistics summary = noVowels().collect(Collectors.summarizingInt(String::length));
         double averageWordLength = summary.getAverage();

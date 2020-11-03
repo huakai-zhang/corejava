@@ -17,8 +17,8 @@ public class FilterTest {
         words.add("Amy");
         words.add("Mack");
         words.add("boat");
-        Stream<String> result = words.stream().flatMap(w -> letters(w));
-
+        Stream<String> result = words.stream().flatMap(FilterTest::letters);
+        result.forEach(System.out::println);
     }
 
     public static Stream<String> letters(String s) {
