@@ -14,3 +14,7 @@ spring:
           # 2.抛出ImmediateAcknowledgeAmqpException异常时，消费者会发送 ACK
           # 3.抛出AmqpRejectAndDontRequeueException异常时，消息被拒绝,不重新入队
           # 4.其他的异常，消息被拒绝，重新入队
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 1234
