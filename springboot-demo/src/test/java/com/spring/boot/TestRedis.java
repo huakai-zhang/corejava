@@ -30,6 +30,6 @@ public class TestRedis {
         // 设置hash
         //redisTemplate.opsForHash().put("employee:laoli", "sex", "男");
         // 获取hash
-        System.out.println(redisTemplate.opsForHash().get("employee:laoli", "name"));
+        //System.out.println(redisTemplate.opsForHash().get("employee:laoli", "name"));
     }
 }
