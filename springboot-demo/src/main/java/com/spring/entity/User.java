@@ -1,4 +1,4 @@
-package com.spring.boot.entity;
+package com.spring.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

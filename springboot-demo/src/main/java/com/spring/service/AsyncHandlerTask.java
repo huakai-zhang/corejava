@@ -1,4 +1,4 @@
-package com.spring.boot.service;
+package com.spring.service;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.spring.boot.mq;
+package com.spring.mq;
 
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;

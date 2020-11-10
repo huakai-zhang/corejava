@@ -1,4 +1,4 @@
-package com.spring.boot.config;
+package com.spring.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ public class AsyncConfig {
 
     @Bean("taskExecutor")
     public Executor taskExecutor() {
-        log.info("start taskExecutor");
+        log.debug("start taskExecutor");
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(2);//核心线程数
         executor.setMaxPoolSize(4);//最大线程数

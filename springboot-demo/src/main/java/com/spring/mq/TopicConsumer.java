@@ -1,4 +1,4 @@
-package com.spring.boot.mq;
+package com.spring.mq;
 
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
