@@ -47,8 +47,13 @@ public class TopicConsumer {
     }
 
     @RabbitListener(queuesToDeclare = @Queue("work"))
-    public void receive(String message) {
+    public void receive3(String msg, Channel channel, Message message) {
         System.out.println("work-message1 = " + message);
+        try {
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @RabbitListener(queuesToDeclare = @Queue("work"))

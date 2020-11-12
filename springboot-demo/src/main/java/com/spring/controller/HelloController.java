@@ -46,4 +46,10 @@ public class HelloController {
     public void task() {
         asyncHandlerTask.sendMessage();
     }
+
+    @GetMapping("/redis")
+    @ApiOperation("redis 5分钟 的接口")
+    public void redis() {
+        rabbitTemplate.convertAndSend("DZ_REDIS_EXCHANGE", "dz.redis", "10秒延时消息");
+    }
 }
