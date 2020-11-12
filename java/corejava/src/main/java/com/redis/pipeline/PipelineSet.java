@@ -5,7 +5,7 @@ import redis.clients.jedis.Pipeline;
 
 public class PipelineSet {
     public static void main(String[] args) {
-        Jedis jedis = new Jedis("192.168.25.128", 6379);
+        Jedis jedis = new Jedis("127.0.0.1", 6379);
         jedis.auth("1234");
         Pipeline pipelined = jedis.pipelined();
         long t1 = System.currentTimeMillis();
