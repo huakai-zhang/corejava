@@ -1,14 +1,21 @@
 package com.spring.entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
-@ApiModel("用户实体")
-public class User {
+import java.io.Serializable;
 
-    @ApiModelProperty("用户名")
-    public String username;
+@Data
+@TableName("t_user")
+public class User implements Serializable {
 
-    @ApiModelProperty("密码")
-    public String password;
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+
+    private String account;
+
 }

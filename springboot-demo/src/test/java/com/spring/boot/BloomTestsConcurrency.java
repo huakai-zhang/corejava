@@ -3,8 +3,8 @@ package com.spring.boot;
 import com.google.common.base.Charsets;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
-import com.gupaoedu.entity.User;
-import com.gupaoedu.service.UserService;
+import com.spring.entity.User;
+import com.spring.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class BloomTestsConcurrency {
     public void init() {
         // 从数据库获取数据，加载到布隆过滤器
         long start = System.currentTimeMillis();
-        allUsers = userService.getAllUser();
+        allUsers = userService.list();
         if (allUsers == null || allUsers.size() == 0) {
             return;
         }
@@ -64,7 +64,6 @@ public class BloomTestsConcurrency {
     @Test
     public void cacheBreakDownTest() {
         long start = System.currentTimeMillis();
-        allUsers = userService.getAllUser();
         CyclicBarrier cyclicBarrier = new CyclicBarrier(THREAD_NUM);
         ExecutorService executorService = Executors.newFixedThreadPool(THREAD_NUM);
         for (int i = 0; i < THREAD_NUM; i++){
@@ -115,10 +114,10 @@ public class BloomTestsConcurrency {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             // 如果布隆过滤器中不存在这个用户直接返回，将流量挡掉
-/*            if (!bf.mightContain(randomUser)) {
+            if (!bf.mightContain(randomUser)) {
                 System.out.println(sdf.format(date1)+" 布隆过滤器中不存在，非法请求");
                 return;
-            }*/
+            }
 
             // 查询缓存，如果缓存中存在直接返回缓存数据
             ValueOperations<String, String> operation =
@@ -147,6 +146,4 @@ public class BloomTestsConcurrency {
         }
 
     }
-
-
 }

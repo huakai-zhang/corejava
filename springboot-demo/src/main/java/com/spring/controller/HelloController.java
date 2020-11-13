@@ -1,6 +1,6 @@
 package com.spring.controller;
 
-import com.spring.entity.User;
+import com.spring.entity.ApiUser;
 import com.spring.service.AsyncHandlerTask;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,8 +37,8 @@ public class HelloController {
 
     @GetMapping("/get_user")
     @ApiOperation("spring 的接口")
-    public User getUser(@ApiParam("这个名字会被返回") String username) {
-        return new User();
+    public ApiUser getUser(@ApiParam("这个名字会被返回") String username) {
+        return new ApiUser();
     }
 
     @GetMapping("/task")
