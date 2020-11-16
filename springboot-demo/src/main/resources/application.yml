@@ -32,3 +32,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
+
+#server:
+#  tomcat:
+# 默认200
+#    max-threads: 2000
