@@ -35,6 +35,7 @@ public class JdbcTest {
     //尽量使用单表操作，如果是在需要多表操作，可以把数据查出来放到内存，然后在内存中计算
 
     public static void main(String[] args) throws SQLException {
+        test();
         Connection conn = null;
         // 原生的JDBC如何操作？
         try {
@@ -82,6 +83,31 @@ public class JdbcTest {
         } catch (Exception e) {
             e.printStackTrace();
             conn.rollback();
+        }
+    }
+
+    public static void test() {
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            //classLoader,加载对应驱动
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/spring", "root", "root");
+
+            stmt = conn.createStatement();
+            String sql= "SELECT id, account FROM t_user WHERE id < 10";
+            ResultSet rs = stmt.executeQuery(sql);
+            // 获取结果集
+            while(rs.next()){
+                int bid = rs.getInt("id");
+                String account = rs.getString("account");
+                System.out.println("id = " + bid + ", account = " + account);
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

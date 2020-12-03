@@ -26,13 +26,18 @@ public class MybatisTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         //SqlSession sqlSession1 = sqlSessionFactory.openSession();
 
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        User user = new User();
-        user.setName("A");
-        userMapper.insertUser(user);
-        //System.out.println(users);
-        sqlSession.commit();
-        sqlSession.close();
+        try {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            User user = userMapper.selectById(1);
+            System.out.println(user);
+            User user1 = new User();
+            user1.setName("A");
+            userMapper.insertUser(user1);
+            sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+        //sqlSession.close();
         /*UserMapper userMapper1 = sqlSession1.getMapper(UserMapper.class);
         List<User> users1 = userMapper1.selectAll();
         System.out.println(users1);
