@@ -7,6 +7,6 @@ package com.spring.framework.context.support;
  */
 public abstract class AbstractApplicationContext {
 
-    protected void refresh() {}
+    protected void refresh() throws Exception {}
 
 }
