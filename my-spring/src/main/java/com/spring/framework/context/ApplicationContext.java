@@ -4,6 +4,9 @@ import com.spring.framework.annotation.Autowired;
 import com.spring.framework.annotation.Controller;
 import com.spring.framework.annotation.Service;
 import com.spring.framework.aop.AopProxy;
+import com.spring.framework.aop.CglibAopProxy;
+import com.spring.framework.aop.JdkDynamicAopProxy;
+import com.spring.framework.aop.config.AopConfig;
 import com.spring.framework.aop.support.AdvisedSupport;
 import com.spring.framework.beans.BeanFactory;
 import com.spring.framework.beans.BeanWrapper;
@@ -29,7 +32,7 @@ public class ApplicationContext extends DefaultListableBeanFactory implements Be
     private BeanDefinitionReader reader;
 
     //单例的IOC容器缓存
-    private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
+    private final Map<String, Object> factoryBeanObjectCache = new ConcurrentHashMap<>(256);
     //通用的IOC容器
     private final Map<String, BeanWrapper> factoryBeanInstanceCache = new ConcurrentHashMap<>(16);
 
@@ -150,23 +153,24 @@ public class ApplicationContext extends DefaultListableBeanFactory implements Be
         Object instance = null;
         try {
             // 默认单例
-            if (this.singletonObjects.containsKey(className)) {
-                instance = this.singletonObjects.get(className);
+            if (this.factoryBeanObjectCache.containsKey(className)) {
+                instance = this.factoryBeanObjectCache.get(className);
             } else {
                 Class<?> clazz = Class.forName(className);
                 instance = clazz.newInstance();
 
-                AdvisedSupport config = instantionAopConfig(beanDefinition);
+                AdvisedSupport config = instantiationAopConfig(beanDefinition);
                 config.setTargetClass(clazz);
                 config.setTarget(instance);
 
-                if (className.pointCutMatch()) {
-
+                // 符合pointcut的规则的话
+                if (config.pointCutMatch()) {
+                    instance = createProxy(config).getProxy();
                 }
-
-
-                this.singletonObjects.put(className, instance);
-                this.singletonObjects.put(beanDefinition.getFactoryBeanName(), instance);
+                //Class<?> clazz = Class.forName(className);
+                //instance = clazz.newInstance();
+                this.factoryBeanObjectCache.put(className, instance);
+                this.factoryBeanObjectCache.put(beanDefinition.getFactoryBeanName(), instance);
             }
 
         } catch (Exception e) {
@@ -176,7 +180,23 @@ public class ApplicationContext extends DefaultListableBeanFactory implements Be
         return instance;
     }
 
-    private AdvisedSupport instantionAopConfig(BeanDefinition beanDefinition) {
+    private AopProxy createProxy(AdvisedSupport config) {
+        Class targetClass = config.getTargetClass();
+        if (targetClass.getInterfaces().length > 0) {
+            return new JdkDynamicAopProxy(config);
+        }
+        return new CglibAopProxy(config);
+    }
+
+    private AdvisedSupport instantiationAopConfig(BeanDefinition beanDefinition) {
+        AopConfig config = new AopConfig();
+        config.setPointCut(this.reader.getConfig().getProperty("pointCut"));
+        config.setAspectAfter(this.reader.getConfig().getProperty("aspectAfter"));
+        config.setAspectBefore(this.reader.getConfig().getProperty("aspectBefore"));
+        config.setAspectClass(this.reader.getConfig().getProperty("aspectClass"));
+        config.setAspectAfterThrow(this.reader.getConfig().getProperty("aspectAfterThrow"));
+        config.setAspectAfterThrowingName(this.reader.getConfig().getProperty("aspectAfterThrowingName"));
+        return new AdvisedSupport(config);
     }
 
     public String[] getBeanDefinitionNames() {
