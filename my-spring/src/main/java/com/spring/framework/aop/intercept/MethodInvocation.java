@@ -51,7 +51,7 @@ public class MethodInvocation implements JoinPoint {
                     (MethodInterceptor) interceptorOrInterceptionAdvice;
             return mi.invoke(this);
         } else {
-            //动态匹配失败时,略过当前Intercetpor,调用下一个Interceptor
+            //动态匹配失败时,略过当前Interceptor,调用下一个Interceptor
             return proceed();
         }
     }
