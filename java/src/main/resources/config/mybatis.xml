@@ -26,9 +26,6 @@
            <property name="typeAliasesPackage" value="com.spring.model"/>
        </bean>
 
-       <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-           <constructor-arg ref="sessionFactoryBean" />
-       </bean>
        <!-- 扫包 -->
        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
            <property name="basePackage" value="com.spring.mybatis.dao"/>

@@ -3,6 +3,7 @@ package com.spring.aop.test;
 import com.github.pagehelper.PageHelper;
 import com.spring.model.User;
 import com.spring.mybatis.dao.UserMapper;
+import com.spring.mybatis.sessiontemplate.impl.UserTemplateDaoImpl;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,32 +18,35 @@ import java.util.List;
 public class UserMapperTest {
 
     @Autowired
-    private UserMapper mapper;
+    private UserMapper userMapper;
+
+    @Autowired
+    private UserTemplateDaoImpl userTemplateDao;
 
     @Test
     @Ignore
     public void testAnnotation() throws Exception {
-        List<User> userList = mapper.selectAll();
+        List<User> userList = userMapper.selectAll();
         System.out.println(userList);
     }
 
     @Test
     public void selectAll() throws Exception {
         //PageHelper.startPage(2, 10);
-        List<User> userList = mapper.selectAll();
+        List<User> userList = userMapper.selectAll();
         System.out.println(userList);
     }
 
     @Test
-    @Ignore
     public void selectById() throws Exception {
-        User user = mapper.selectById(1);
+        //User user = userMapper.selectById(1);
+        User user = userTemplateDao.selectById(1);
         System.out.println(user);
     }
 
     @Test
     @Ignore
     public void insertUser() throws Exception {
-        mapper.insertUser(new User("Xiaoxiao"));
+        userMapper.insertUser(new User("Xiaoxiao"));
     }
 }
