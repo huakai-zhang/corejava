@@ -15,33 +15,42 @@ import java.util.List;
  * @author Spring Zhang
  * @date 2019/12/16 13:20
  */
-public class MybatisTest {
+public class FirstCacheTest {
 
     public static void main(String[] args) throws IOException {
-        // 使用类加载器，加载mybatis的配置文件
         InputStream inputStream= Resources.getResourceAsStream("mybatis-config.xml");
 
         // 构件sqlSession工厂
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        //SqlSession sqlSession1 = sqlSessionFactory.openSession();
-
+        SqlSession sqlSession1 = sqlSessionFactory.openSession();
+        SqlSession sqlSession2 = sqlSessionFactory.openSession();
         try {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-            User user = userMapper.selectById(1);
-            System.out.println(user);
-            /*User user1 = new User();
-            user1.setName("A");
-            userMapper.insertUser(user1);*/
+            System.out.println(userMapper.selectAll());
             sqlSession.commit();
+
+            UserMapper userMapper1 = sqlSession1.getMapper(UserMapper.class);
+            User user = new User();
+            user.setId(15);
+            user.setName("E");
+            userMapper1.updateUser(user);
+            sqlSession1.commit();
+
+            //UserMapper userMapper2 = sqlSession2.getMapper(UserMapper.class);
+            System.out.println(userMapper.selectAll());
+            sqlSession.commit();
+
+            sqlSession.close();
+            sqlSession1.close();
+            /*User user = userMapper.selectById(1);
+            System.out.println(user);
+            User user1 = new User();
+            user1.setName("A");
+            userMapper.insertUser(user1);
+            sqlSession.commit();*/
         } finally {
             sqlSession.close();
         }
-        //sqlSession.close();
-        /*UserMapper userMapper1 = sqlSession1.getMapper(UserMapper.class);
-        List<User> users1 = userMapper1.selectAll();
-        System.out.println(users1);
-        sqlSession.close();
-        sqlSession1.close();*/
     }
 }

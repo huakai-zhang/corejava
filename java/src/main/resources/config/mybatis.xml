@@ -27,7 +27,10 @@
        </bean>
 
        <!-- 扫包 -->
-       <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+       <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+           <property name="basePackage" value="com.spring.mybatis.dao"/>
+       </bean>-->
+       <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
            <property name="basePackage" value="com.spring.mybatis.dao"/>
        </bean>
 
