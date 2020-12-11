@@ -6,9 +6,9 @@ public class TestFindLove {
 	public static void main(String[] args) {
 
 		try {
-
+			Meipo<?> meipo = new Meipo<>(XiaoXingxing.class);
 //			
-			Person obj = (Person)new Meipo().getInstance(new XiaoXingxing());
+			Person obj = meipo.getInstance();
 			System.out.println(obj.getClass());
  			obj.findLove();
 
