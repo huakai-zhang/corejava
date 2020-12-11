@@ -7,4 +7,8 @@
         WHERE account = #{randomUser}
     </select>
 
+    <select id="scan" parameterType="integer" resultType="com.spring.entity.User">
+        SELECT * FROM t_user
+    </select>
+
 </mapper>
