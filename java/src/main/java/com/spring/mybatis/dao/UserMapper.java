@@ -11,6 +11,8 @@ public interface UserMapper {
 
     User selectById(Integer Id);
 
+    User selectByIds(User user);
+
 //    @Select("select * from user")
 //    List<User> selectAll();
 

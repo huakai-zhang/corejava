@@ -23,7 +23,7 @@ import java.util.*;
 public class Configuration {
     public static final ResourceBundle sqlMappings; // SQL映射关系配置，使用注解时不用重复配置
     public static final ResourceBundle properties; // 全局配置
-    public static final MapperRegistry MAPPER_REGISTRY = new MapperRegistry(); // 维护接口与工厂类关系
+    public static final MapperRegistry mapperRegistry = new MapperRegistry(); // 维护接口与工厂类关系
     public static final Map<String, String> mappedStatements = new HashMap<>(); // 维护接口方法与SQL关系
 
     private InterceptorChain interceptorChain = new InterceptorChain(); // 插件
@@ -59,7 +59,7 @@ public class Configuration {
                 e.printStackTrace();
             }
 
-            MAPPER_REGISTRY.addMapper(mapper, pojo); // 接口与返回的实体类关系
+            mapperRegistry.addMapper(mapper, pojo); // 接口与返回的实体类关系
             mappedStatements.put(key, statement); // 接口方法与SQL关系
         }
 
@@ -105,7 +105,7 @@ public class Configuration {
     }
 
     public <T> T getMapper(Class<T> clazz, DefaultSqlSession sqlSession) {
-        return MAPPER_REGISTRY.getMapper(clazz, sqlSession);
+        return mapperRegistry.getMapper(clazz, sqlSession);
     }
 
     /**
@@ -138,7 +138,7 @@ public class Configuration {
             for (Annotation annotation : mapper.getAnnotations()) {
                 if (annotation.annotationType().equals(Entity.class)) {
                     // 注册接口与实体类的映射关系
-                    MAPPER_REGISTRY.addMapper(mapper, ((Entity)annotation).value());
+                    mapperRegistry.addMapper(mapper, ((Entity)annotation).value());
                 }
             }
         }

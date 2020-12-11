@@ -30,6 +30,7 @@ public class MybatisTest {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
             User user = userMapper.selectById(1);
             System.out.println(user);
+            System.out.println(userMapper.selectAll());
             /*User user1 = new User();
             user1.setName("A");
             userMapper.insertUser(user1);*/

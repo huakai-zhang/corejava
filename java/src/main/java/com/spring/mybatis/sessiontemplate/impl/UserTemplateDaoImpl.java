@@ -26,6 +26,11 @@ public class UserTemplateDaoImpl extends BaseDao implements UserMapper {
     }
 
     @Override
+    public User selectByIds(User user) {
+        return null;
+    }
+
+    @Override
     public void insertUser(User user) {
 
     }

@@ -13,11 +13,19 @@
 
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT * FROM user
+        <!--where id &lt; 1000-->
+        where id <![CDATA[<]]> 1000
     </select>
 
     <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         SELECT * FROM user
         WHERE id = #{id}
+    </select>
+
+    <select id="selectByIds" parameterType="com.spring.model.User" resultMap="BaseResultMap">
+        SELECT * FROM user
+        WHERE name = ${name}
+        AND id = ${id}
     </select>
     
     <insert id="insertUser" parameterType="com.spring.model.User">
