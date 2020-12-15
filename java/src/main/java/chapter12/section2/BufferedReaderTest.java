@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class BufferedReaderTest {
     public static void main(String[] args) throws IOException {
-        InputStream inputStream = new FileInputStream("E:\\JAVA\\IdeaProjects\\corejava\\src\\chapter12\\section2\\f.txt");
+        InputStream inputStream = new FileInputStream("E:\\f.txt");
         BufferedReader in = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         String line;
         while ((line = in.readLine()) != null) {
