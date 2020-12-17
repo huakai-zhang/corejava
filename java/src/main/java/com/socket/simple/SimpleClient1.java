@@ -15,7 +15,7 @@ public class SimpleClient1 {
         try {
             socket = new Socket("127.0.0.1", 8888);
             out = new PrintWriter(socket.getOutputStream(), true);
-            out.println("Hello, 冯晓");
+            out.println("Hello, 晓晓");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
