@@ -1,5 +1,7 @@
 package com.serializable;
 
+import com.baidu.bjf.remoting.protobuf.annotation.Protobuf;
+
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -8,12 +10,14 @@ import java.io.Serializable;
  * @date 2020-12-18 18:15
  */
 public class SerializablePerson extends SuperPerson implements Serializable {
-    //private static final long serialVersionUID = -3173897838325750141L;
+    private static final long serialVersionUID = -3173897838325750141L;
 
     public static int height = 2;
 
+    @Protobuf(order = 1)
     private String name;
 
+    @Protobuf(order = 2)
     private transient int age;
 
     public String getName() {
