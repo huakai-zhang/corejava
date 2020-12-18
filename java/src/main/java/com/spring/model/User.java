@@ -2,7 +2,8 @@ package com.spring.model;
 
 import java.io.Serializable;
 
-public class User  {
+public class User implements Serializable {
+    private static final long serialVersionUID = 361091462702868517L;
     private int id;
     private String name;
 
