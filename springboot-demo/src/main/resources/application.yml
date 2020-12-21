@@ -43,3 +43,8 @@ xiaoxiao:
       info:
         sex: '美女'
         age: 18
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
