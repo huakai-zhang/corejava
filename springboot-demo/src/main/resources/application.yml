@@ -37,3 +37,9 @@ mybatis-plus:
 #  tomcat:
 # 默认200
 #    max-threads: 2000
+xiaoxiao:
+  hello:
+    format:
+      info:
+        sex: '美女'
+        age: 18

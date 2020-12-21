@@ -104,6 +104,12 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.3.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.spring</groupId>
+            <artifactId>demo-spring-boot-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

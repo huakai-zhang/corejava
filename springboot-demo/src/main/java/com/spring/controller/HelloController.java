@@ -1,7 +1,9 @@
 package com.spring.controller;
 
 import com.spring.entity.ApiUser;
+import com.spring.entity.User;
 import com.spring.service.AsyncHandlerTask;
+import com.spring.starter.HelloFormatTemplate;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -27,6 +29,9 @@ public class HelloController {
 
     @Autowired
     private AsyncHandlerTask asyncHandlerTask;
+
+    @Autowired
+    HelloFormatTemplate helloFormatTemplate;
 
     @GetMapping("/hello")
     public String hello() {
@@ -57,5 +62,15 @@ public class HelloController {
     @ApiOperation("redis 5分钟 的接口")
     public void redis() {
         rabbitTemplate.convertAndSend("DZ_REDIS_EXCHANGE", "dz.redis", "10秒延时消息");
+    }
+
+
+
+    @GetMapping("/format")
+    public String format(){
+        User user=new User();
+        user.setId(1);
+        user.setAccount("Xiaoxiao");
+        return helloFormatTemplate.doFormat(user);
     }
 }
