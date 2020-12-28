@@ -10,6 +10,7 @@ public class InterruptionInJava01 {
             try {
                 Thread.sleep(888888);
             } catch (InterruptedException e) {
+                System.out.println(Thread.currentThread().isInterrupted());
                 System.out.println("caught exception right now: "+e);
             }
         });

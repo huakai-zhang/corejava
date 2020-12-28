@@ -14,7 +14,7 @@ class MyCache {
         readWriteLock.writeLock().lock();
         try {
             System.out.println(Thread.currentThread().getName() + "\t---写入数据" + key);
-            try { TimeUnit.MILLISECONDS.sleep(300); } catch (InterruptedException e) { e.printStackTrace(); }
+            try { TimeUnit.MILLISECONDS.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
             map.put(key, value);
             System.out.println(Thread.currentThread().getName() + "\t---写入完成");
         } catch (Exception e) {
@@ -28,7 +28,7 @@ class MyCache {
         readWriteLock.readLock().lock();
         try {
             System.out.println(Thread.currentThread().getName() + "\t读取数据");
-            try { TimeUnit.MILLISECONDS.sleep(300); } catch (InterruptedException e) { e.printStackTrace(); }
+            try { TimeUnit.MILLISECONDS.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
             Object result = map.get(key);
             System.out.println(Thread.currentThread().getName() + "\t读取完成" + result);
         } catch (Exception e) {
@@ -40,7 +40,7 @@ class MyCache {
     }
 }
 
-public class ReadWriteLockDemo {
+public class ReentrantReadWriteLockDemo {
     public static void main(String[] args) {
         MyCache myCache = new MyCache();
 
