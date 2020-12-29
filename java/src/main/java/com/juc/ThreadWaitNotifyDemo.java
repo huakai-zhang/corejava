@@ -74,7 +74,7 @@ public class ThreadWaitNotifyDemo {
             }
         }, "B").start();
 
-        new Thread(() -> {
+        /*new Thread(() -> {
             for (int i = 1; i <= 10; i++) {
                 try {
                     Thread.sleep(400);
@@ -93,6 +93,6 @@ public class ThreadWaitNotifyDemo {
                     e.printStackTrace();
                 }
             }
-        }, "D").start();
+        }, "D").start();*/
     }
 }
