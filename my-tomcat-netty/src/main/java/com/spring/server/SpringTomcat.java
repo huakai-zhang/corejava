@@ -36,6 +36,7 @@ public class SpringTomcat {
                     .channel(NioServerSocketChannel.class)
                     // 子线程的处理
                     .childHandler(new ChannelInitializer<SocketChannel>() {
+                        @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             // 无锁化串行编程
                             // 业务逻辑链路，编码器
