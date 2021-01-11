@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class HelloController {
 
-    @Value("${dev.value}")
-    private String value;
+    //@Value("${dev.value}")
+    //private String value;
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -37,12 +37,12 @@ public class HelloController {
     public String hello() {
         //rabbitTemplate.convertAndSend("", "work", "work消息");
         log.info(Thread.currentThread().getName() + " start");
-        try {
+        /*try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-        log.info(value);
+        }*/
+        //log.info(value);
         return "Hello Swagger!";
     }
 
