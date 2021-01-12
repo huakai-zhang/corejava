@@ -9,6 +9,7 @@
         <module>hello-service</module>
         <module>euraka-server-1</module>
         <module>ribbon-consumer</module>
+        <module>hystrix-dashboard</module>
     </modules>
 
     <parent>

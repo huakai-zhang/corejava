@@ -17,7 +17,10 @@ public class HelloService {
 
     @HystrixCommand(fallbackMethod = "helloFallback")
     public String helloService() {
-        return restTemplate.getForEntity("http://HELLO-SERVICE/hello", String.class).getBody();
+        long start = System.currentTimeMillis();
+        String result = restTemplate.getForEntity("http://HELLO-SERVICE/hello", String.class).getBody();
+        System.out.println("time: " + (System.currentTimeMillis() - start));
+        return result;
     }
 
     public String helloFallback() {

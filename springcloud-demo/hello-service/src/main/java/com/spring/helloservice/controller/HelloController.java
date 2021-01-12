@@ -29,9 +29,9 @@ public class HelloController {
     @GetMapping("/hello")
     public String index() throws InterruptedException {
         ServiceInstance instance = serviceInstance();
-        int sleepTime = new Random().nextInt(3000);
+        int sleepTime = new Random().nextInt(5000);
         System.out.println("sleepTime:" + sleepTime);
-        Thread.sleep(5000);
+        Thread.sleep(sleepTime);
         System.out.println("/hello, host:" + instance.getHost()  + ", service_id:" + instance.getServiceId());
         return "Hello World";
     }
