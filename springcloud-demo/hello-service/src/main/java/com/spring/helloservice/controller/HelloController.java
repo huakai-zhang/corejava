@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author 春阳
@@ -26,8 +27,11 @@ public class HelloController {
     private DiscoveryClient client;
 
     @GetMapping("/hello")
-    public String index() {
+    public String index() throws InterruptedException {
         ServiceInstance instance = serviceInstance();
+        int sleepTime = new Random().nextInt(3000);
+        System.out.println("sleepTime:" + sleepTime);
+        Thread.sleep(5000);
         System.out.println("/hello, host:" + instance.getHost()  + ", service_id:" + instance.getServiceId());
         return "Hello World";
     }
