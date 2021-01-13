@@ -1,13 +1,12 @@
 package com.spring.helloservice.controller;
 
+import com.spring.helloservice.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.serviceregistry.Registration;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Random;
@@ -29,9 +28,9 @@ public class HelloController {
     @GetMapping("/hello")
     public String index() throws InterruptedException {
         ServiceInstance instance = serviceInstance();
-        int sleepTime = new Random().nextInt(5000);
+        int sleepTime = new Random().nextInt(3000);
         System.out.println("sleepTime:" + sleepTime);
-        Thread.sleep(sleepTime);
+        //Thread.sleep(sleepTime);
         System.out.println("/hello, host:" + instance.getHost()  + ", service_id:" + instance.getServiceId());
         return "Hello World";
     }
@@ -46,5 +45,20 @@ public class HelloController {
             }
         }
         return null;
+    }
+
+    @GetMapping("/hello1")
+    public String hello(@RequestParam String name)   {
+        return "Hello " + name;
+    }
+
+    @GetMapping("/hello2")
+    public User hello(@RequestParam String name, @RequestParam Integer age)   {
+        return new User(name, age);
+    }
+
+    @PostMapping("/hello3")
+    public String hello(@RequestBody User user)   {
+        return "Hello " + user.getName() + ", " + user.getAge();
     }
 }

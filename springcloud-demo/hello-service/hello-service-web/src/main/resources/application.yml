@@ -1,8 +1,6 @@
-server:
-  port: 9000
 spring:
   application:
-    name: ribbon-consumer
+    name: hello-service
 eureka:
   client:
     service-url:
