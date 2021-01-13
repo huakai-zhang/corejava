@@ -8,4 +8,6 @@ spring:
       server:
         git:
           uri: https://gitee.com/spring_zcy/corejava.git
-          search-paths:
+          search-paths: config-repo
+          username: 457540867@qq.com
+          password: wszcy199503ns
