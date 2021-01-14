@@ -1,0 +1,8 @@
+encrypt:
+  key-store:
+    location: config-server.jks
+    alias: config-server
+    password: love520
+    secret: xiaoxiao
+#key: springspace
+#keytool -genkeypair -alias config-server -keyalg RSA -dname "CN=Zhang Chun Yang,OU=Java,O=Spring,L=Zhengzhou,S=Henan,C=China" -keypass xiaoxiao -keystore config-server.jks -storepass love520 -validity 365

@@ -11,3 +11,13 @@ spring:
           search-paths: config-repo
           username: 457540867@qq.com
           password: wszcy199503ns
+        #overrides:
+          #from: shanghai
+  security:
+    user:
+      name: user
+      password: 4ffd2b73-75d4-485a-b090-f168c1ff883f
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.25.128:8761/eureka/

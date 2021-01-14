@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: api-gateway
+server:
+  port: 5555
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.25.128:8761/eureka/
+zuul:
+  routes:
+    hello:
+      path: /hello-service/**
+      serviceId: hello-service
+  filter:
+    root: api-gateway-dynamic-filter\src\main\java\com\spring\filter
+    interval: 5
