@@ -17,6 +17,7 @@
         <module>api-gateway-dynamic-route</module>
         <module>api-gateway-dynamic-filter</module>
         <module>rabbitmq-hello</module>
+        <module>stream-hello</module>
     </modules>
 
     <parent>
