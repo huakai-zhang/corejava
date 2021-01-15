@@ -16,6 +16,7 @@
         <module>config-client</module>
         <module>api-gateway-dynamic-route</module>
         <module>api-gateway-dynamic-filter</module>
+        <module>rabbitmq-hello</module>
     </modules>
 
     <parent>

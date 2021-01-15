@@ -1,5 +1,6 @@
 server:
   port: 7001
+#port: ${random.int[1000,9999]}
 spring:
   application:
     name: config-server
@@ -21,3 +22,5 @@ eureka:
   client:
     service-url:
       defaultZone: http://192.168.25.128:8761/eureka/
+  #instance:
+    #instance-id: ${spring.application.name}:${random.int}
