@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+          producer:
+            partitionKeyExpression: payload
+            partitionCount: 2
+          destination: myMessage
+          content-type: application/json
+          group: stream-hello
+server:
+  port: 8082

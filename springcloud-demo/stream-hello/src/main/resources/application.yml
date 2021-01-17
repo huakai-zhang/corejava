@@ -1,0 +1,26 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          consumer:
+            partitioned: true
+          destination: myMessage
+          # 通过json格式传递数据
+          content-type: application/json
+          # 消息分组，把一个服务划到一个组里，无论你起了多少个实例，只会有一个实例消费
+          group: stream-hello
+      instance-count: 2
+      instance-index: 0
+#        output:
+#          destination: myMessage
+#          content-type: application/json
+#          group: stream-hello
+#        input2:
+#          destination: myMessage2
+#          content-type: application/json
+#          group: stream-hello
+#        output2:
+#          destination: myMessage2
+#          content-type: application/json
+#          group: stream-hello

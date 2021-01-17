@@ -18,6 +18,10 @@
         <module>api-gateway-dynamic-filter</module>
         <module>rabbitmq-hello</module>
         <module>stream-hello</module>
+        <module>stream-hello-1</module>
+        <module>stream-hello-producer</module>
+        <module>trace-1</module>
+        <module>track-2</module>
     </modules>
 
     <parent>
