@@ -30,7 +30,7 @@ public class Track1Application {
 
     @GetMapping("/track-1")
     public String track() {
-        log.info("=== call track1 ===");
+        log.info("=== call track-1 ===");
         return restTemplate().getForEntity("http://track-2/track-2", String.class).getBody();
     }
 

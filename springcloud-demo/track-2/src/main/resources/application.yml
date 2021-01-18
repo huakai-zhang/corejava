@@ -3,7 +3,19 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://192.168.25.128:8761/eureka/
 spring:
   application:
     name: track-2
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://192.168.25.128:9411/
+    sender:
+      type: rabbit
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest

@@ -5,11 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author 花开不合阳春暮
@@ -23,8 +22,8 @@ public class Track2Application {
     private Logger log = LoggerFactory.getLogger(Track2Application.class);
 
     @GetMapping("/track-2")
-    public String track() {
-        log.info("=== call track2 ===");
+    public String track(HttpServletRequest request) {
+        log.info("=== call track-2, TraceId={}, SpanId={} ===", request.getHeader("X-B3-TraceId"), request.getHeader("X-B3-SpanId"));
         return "Track";
     }
 
