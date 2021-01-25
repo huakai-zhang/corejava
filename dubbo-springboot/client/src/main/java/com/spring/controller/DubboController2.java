@@ -2,7 +2,6 @@ package com.spring.controller;
 
 import com.spring.service.ISayHelloService;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/1/23 上午11:47
  */
 @RestController
-public class DubboController {
+public class DubboController2 {
 
-    @Reference//(timeout = 1, cluster = "failfast", mock = "com.spring.mock.SayHelloServiceMock")// loadbalance = "random",
+    @Reference(version = "v2.0.0")//(timeout = 1, cluster = "failfast", mock = "com.spring.mock.SayHelloServiceMock")// loadbalance = "random",
     ISayHelloService sayHelloService;
 
-    @GetMapping("/sayHello")
+    @GetMapping("/sayHello2")
     public String sayHello() {
         return sayHelloService.sayHello();
     }
