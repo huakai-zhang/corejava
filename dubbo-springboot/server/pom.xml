@@ -16,4 +16,17 @@
         <module>server-boot-provider</module>
     </modules>
 
+    <dependencies>
+        <!--JAX-RS  CXF / Jersey /RESTEasy-->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>3.8.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>4.0.0.Final</version>
+        </dependency>
+    </dependencies>
 </project>
