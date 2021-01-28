@@ -13,4 +13,8 @@ public interface ISayHelloService {
     @GET
     @Path("/hello")
     String sayHello();
+
+    @GET
+    @Path("/bey")
+    String sayBey();
 }

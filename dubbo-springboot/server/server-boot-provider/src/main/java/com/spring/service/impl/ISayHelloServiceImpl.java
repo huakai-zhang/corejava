@@ -20,4 +20,9 @@ public class ISayHelloServiceImpl implements ISayHelloService {
         System.out.println("Come in");
         return "Hello Dubbo!";
     }
+
+    @Override
+    public String sayBey() {
+        return "Dubbo Bye!";
+    }
 }

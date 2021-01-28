@@ -11,4 +11,9 @@ public class SayHelloServiceMock implements ISayHelloService {
     public String sayHello() {
         return "服务发生异常，被降级";
     }
+
+    @Override
+    public String sayBey() {
+        return null;
+    }
 }
