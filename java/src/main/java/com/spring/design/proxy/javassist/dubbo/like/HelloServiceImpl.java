@@ -1,4 +1,4 @@
-package com.spring.design.proxy.dubbo.like;
+package com.spring.design.proxy.javassist.dubbo.like;
 
 /**
  * @author 春阳
@@ -16,7 +16,7 @@ public class HelloServiceImpl implements HelloService {
     }
 
     @Override
-    public String[] getHobbies() {
+    public String[] getHobbies(Integer id, String name) {
         return new String[0];
     }
 }

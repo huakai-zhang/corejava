@@ -1,4 +1,4 @@
-package com.spring.design.proxy.dubbo.like;
+package com.spring.design.proxy.javassist.dubbo.like;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 public class ProxyTest {
     public static void main(String[] args) throws Throwable {
         final HelloService target = new HelloServiceImpl();
-        ProxyFactory factory = factory = new JavassistProxyFactory();
+        ProxyFactory factory = new JavassistProxyFactory();
 
         InvocationHandler handler = new InvocationHandler() {
             @Override
@@ -39,12 +39,8 @@ public class ProxyTest {
         System.out.println(proxy);
 
         proxy.say("ricky");
-        proxy.echo("傻吊");
-        proxy.getHobbies();
+        proxy.echo("花开");
+        proxy.getHobbies(200, "晓晓");
     }
 }
-    /*public java.lang.String[] getHobbies() {
-        Object[] args = new Object[0];
-        System.out.println(args);
-        return (java.lang.String[]) ret;
-    }*/
+

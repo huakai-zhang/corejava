@@ -1,4 +1,4 @@
-package com.spring.design.proxy.dubbo.like;
+package com.spring.design.proxy.javassist.dubbo.like;
 
 import javassist.*;
 import org.apache.commons.lang.ClassUtils;
@@ -36,13 +36,8 @@ public class ProxyGenerator {
         CtField mf = CtField.make("public static java.lang.reflect.Method[] methods;", proxy);
         proxy.addField(mf);
 
-        CtField hf = CtField.make("private String handler = '代理类添加的属性';", proxy);
+        CtField hf = CtField.make("private static int num = 1;", proxy);
         proxy.addField(hf);
-
-        CtConstructor constructor = new CtConstructor(new CtClass[]{pool.get(InvocationHandler.class.getName())}, proxy);
-        constructor.setBody("this.handler=$1;");
-        constructor.setModifiers(Modifier.PUBLIC);
-        proxy.addConstructor(constructor);
 
         proxy.addConstructor(CtNewConstructor.defaultConstructor(proxy));
 
@@ -56,17 +51,20 @@ public class ProxyGenerator {
 
             Method[] arr = cls.getDeclaredMethods();
             for (Method method : arr) {
-                int ix = methods.size();
                 Class<?> rt = method.getReturnType();
                 Class<?>[] pts = method.getParameterTypes();
-
-                StringBuilder code = new StringBuilder("Object[] args = new Object[").append(pts.length).append("];");
-                for (int j = 0; j < pts.length; j++) {
-                    code.append(" args[").append(j).append("] = ($w)$").append(j + 1).append(";");
+                StringBuilder code = new StringBuilder("System.out.println(num);");
+                code.append("num = num + 1;");
+                if (pts.length > 0) {
+                    for (int i = 1; i <= pts.length; i++) {
+                        code.append("System.out.println($"+ i +");");
+                    }
+                } else {
+                    code.append("System.out.println(\"没有参数\");");
                 }
-                code.append("System.out.println(args);");
+
                 if (!Void.TYPE.equals(rt)) {
-                    code.append(" return ").append(asArgument(rt, "ret")).append(";");
+                    code.append(" return null;");
                 }
 
                 StringBuilder sb = new StringBuilder(1024);
@@ -106,10 +104,9 @@ public class ProxyGenerator {
         return proxyClass.newInstance();
     }
 
-    public static Object newProxyInstance(ClassLoader classLoader, Class<?> targetClass, InvocationHandler invocationHandler)
-            throws Exception {
+    public static Object newProxyInstance(ClassLoader classLoader, Class<?> targetClass, InvocationHandler invocationHandler) throws Exception {
 
-        if (proxyInstanceCache.containsKey(targetClass)) {
+        if(proxyInstanceCache.containsKey(targetClass)){
             return proxyInstanceCache.get(targetClass);
         }
 
@@ -149,33 +146,33 @@ public class ProxyGenerator {
                 Class<?>[] pts = method.getParameterTypes();
 
                 StringBuilder code = new StringBuilder("Object[] args = new Object[").append(pts.length).append("];");
-                for (int j = 0; j < pts.length; j++) {
+                for(int j=0;j<pts.length;j++) {
                     code.append(" args[").append(j).append("] = ($w)$").append(j + 1).append(";");
                 }
-                code.append("System.out.println(args);");
-                if (!Void.TYPE.equals(rt)) {
+                code.append(" Object ret = handler.invoke(this, methods[" + ix + "], args);");
+                if(!Void.TYPE.equals(rt) )
                     code.append(" return ").append(asArgument(rt, "ret")).append(";");
-                }
 
                 StringBuilder sb = new StringBuilder(1024);
                 sb.append(modifier(method.getModifiers())).append(' ').append(getParameterType(rt)).append(' ').append(method.getName());
                 sb.append('(');
-                for (int i = 0; i < pts.length; i++) {
-                    if (i > 0) {
+                for(int i=0;i<pts.length;i++)
+                {
+                    if( i > 0 )
                         sb.append(',');
-                    }
                     sb.append(getParameterType(pts[i]));
                     sb.append(" arg").append(i);
                 }
                 sb.append(')');
 
                 Class<?>[] ets = method.getExceptionTypes();    //方法抛出异常
-                if (ets != null && ets.length > 0) {
+                if( ets != null && ets.length > 0 )
+                {
                     sb.append(" throws ");
-                    for (int i = 0; i < ets.length; i++) {
-                        if (i > 0) {
+                    for(int i=0;i<ets.length;i++)
+                    {
+                        if( i > 0 )
                             sb.append(',');
-                        }
                         sb.append(getParameterType(ets[i]));
                     }
                 }
@@ -191,14 +188,14 @@ public class ProxyGenerator {
         proxy.setModifiers(Modifier.PUBLIC);
 
         Class<?> proxyClass = proxy.toClass(classLoader, null);
-        /*proxyClass.getField("methods").set(null, methods.toArray(new Method[0]));
+        proxyClass.getField("methods").set(null, methods.toArray(new Method[0]));
 
         Object instance = proxyClass.getConstructor(InvocationHandler.class).newInstance(invocationHandler);
         Object old = proxyInstanceCache.putIfAbsent(targetClass, instance);
-        if (old != null) {
+        if(old!=null){
             instance = old;
-        }*/
-        return proxyClass.newInstance();
+        }
+        return instance;
     }
 
     private static String modifier(int mod) {

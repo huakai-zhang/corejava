@@ -1,4 +1,4 @@
-package com.spring.design.proxy.dubbo;
+package com.spring.design.proxy.javassist.dubbo.real;
 
 import java.lang.reflect.Modifier;
 

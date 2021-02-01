@@ -1,4 +1,4 @@
-package com.spring.design.proxy.dubbo.like;
+package com.spring.design.proxy.javassist.dubbo.like;
 
 /**
  * @author 春阳
@@ -9,5 +9,5 @@ public interface HelloService {
 
     String echo(String msg);
 
-    String[] getHobbies();
+    String[] getHobbies(Integer id, String name);
 }

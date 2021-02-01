@@ -1,4 +1,4 @@
-package com.spring.design.proxy.dubbo;
+package com.spring.design.proxy.javassist.dubbo.real;
 
 import javassist.*;
 
@@ -63,7 +63,7 @@ public class HuaKaiGenerator {
     private List<String> mMethods;
     private String mClassName;
     private CtClass mCtc;
-    private String mSuperClass = "com.spring.design.proxy.dubbo.HuaKaiWrapper";
+    private String mSuperClass = "com.spring.design.proxy.javassist.dubbo.real.HuaKaiWrapper";
     private Map<String, Method> mCopyMethods;
 
     public HuaKaiGenerator(ClassPool pool) {

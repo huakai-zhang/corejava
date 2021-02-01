@@ -1,4 +1,4 @@
-package com.spring.design.proxy.dubbo;
+package com.spring.design.proxy.javassist.dubbo.real;
 
 /**
  * @author 春阳

@@ -1,4 +1,4 @@
-package com.spring.design.proxy.dubbo.like;
+package com.spring.design.proxy.javassist.dubbo.like;
 
 import java.lang.reflect.InvocationHandler;
 

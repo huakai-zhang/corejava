@@ -13,13 +13,13 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class NotSafeDemo {
     public static void main(String[] args) {
-        Map<String, String> map = new ConcurrentHashMap();
+        Map<String, String> map = new HashMap();
         Set<String> list = new HashSet<>();//Collections.synchronizedList(new ArrayList<>());//new Vector<>(); //new ArrayList<>();
 
         for (int i = 1; i <= 30; i++) {
             new Thread(() -> {
-                list.add(UUID.randomUUID().toString().substring(0, 8));
-                System.out.println(list);
+                map.put(UUID.randomUUID().toString().substring(0, 8), UUID.randomUUID().toString().substring(0, 8));
+                System.out.println(map);
             }, String.valueOf(i)).start();
         }
 
