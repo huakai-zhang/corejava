@@ -1,20 +1,20 @@
-package com.spring;
+package com.spring.v2;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author 花开不合阳春暮
- * @date 2021/1/1 下午1:27
+ * @author 春阳
+ * @date 2021-02-03 14:34
  */
 @Configuration
 @ComponentScan(basePackages = "com.spring")
-public class SpringConfig {
+public class HuaKaiConfig {
 
-    @Bean("springRpcServer")
-    public SpringRpcServer springRpcServer() {
-        return new SpringRpcServer(8080);
+    @Bean
+    public HuaKaiSpringServer huaKaiSpringServer() {
+        return new HuaKaiSpringServer(8080);
     }
 
 }

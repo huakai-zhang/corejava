@@ -1,10 +1,10 @@
 package com.juc.volatiles;
 
 /**
- * 多线程下变量访问的不可变性
+ * 多线程下变量访问的不可见性
  */
 class MyThread {
-    private volatile boolean flag = false;
+    private boolean flag = false;
 
     public void run() {
         flag = true;

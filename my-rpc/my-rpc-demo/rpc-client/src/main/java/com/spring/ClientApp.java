@@ -1,5 +1,7 @@
 package com.spring;
 
+import com.spring.v2.RpcProxyClient;
+import com.spring.v2.SpringConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -8,11 +10,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class ClientApp {
     public static void main(String[] args) {
-        /*System.out.println("Hello World!");
-        RpcProxyClient rpcProxyClient = new RpcProxyClient();
-        IHelloService iHelloService = rpcProxyClient.clientProxy(IHelloService.class, "localhost", 8080);
+        /*IHelloService iHelloService = new HuaKaiProxy("localhost", 8080).getInstance(IHelloService.class);
 
-        String result = iHelloService.syaHello("Xiaoxiao");
+        String result = iHelloService.syaHello("晓晓");
         System.out.println(result);*/
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
         RpcProxyClient rpcProxyClient = context.getBean(RpcProxyClient.class);

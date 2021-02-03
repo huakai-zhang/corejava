@@ -1,33 +1,26 @@
-package com.spring;
+package com.spring.v2;
 
+import com.spring.RpcRequest;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author 花开不合阳春暮
- * @date 2021/1/1 下午12:25
+ * @author 春阳
+ * @date 2021-02-03 15:24
  */
-public class ProcessorHandler implements Runnable {
+public class HuaKaiSpringHandler implements Runnable {
 
     private Socket socket;
 
     private Map<String, Object> handleMap;
-    //private Object server;
 
-    /*public ProcessorHandler(Socket socket, Object server) {
-        this.server = server;
-        this.socket = socket;
-    }*/
-
-    public ProcessorHandler(Socket socket, Map<String, Object> handleMap) {
+    public HuaKaiSpringHandler(Socket socket, Map<String, Object> handleMap) {
         this.socket = socket;
         this.handleMap = handleMap;
     }
@@ -67,38 +60,32 @@ public class ProcessorHandler implements Runnable {
         }
     }
 
-    private Object invoke(RpcRequest request) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    private Object invoke(RpcRequest request) throws Exception {
         String serviceName = request.getClassName();
         String version = request.getVersion();
         // 增加版本号
         if(!StringUtils.isEmpty(version)) {
             serviceName += "-" + version;
         }
+        Object object = handleMap.get(serviceName);
 
-        Object server = handleMap.get(serviceName);
-
-        if (server == null) {
+        if (object == null) {
             throw new RuntimeException("service not found: " + serviceName);
         }
 
-        // 拿到客户端的请求参数
-        Object[] args = request.getParameters();
+        Object[] parameters = request.getParameters();
         Method method;
-        if (args != null) {
-            // 获得每个参数类型
-            Class<?>[] types = new Class[args.length];
-            for (int i = 0; i < args.length; i++) {
-                types[i] = args[i].getClass();
+        if (parameters != null) {
+            Class<?>[] parameterTypes = new Class[parameters.length];
+            for (int i = 0; i < parameters.length; i++) {
+                parameterTypes[i] = parameters[i].getClass();
             }
-            // 根据请求的类进行加载
-            Class clazz = Class.forName(request.getClassName());
-            method = clazz.getMethod(request.getMethodName(), types);
+            Class<?> clazz = Class.forName(request.getClassName());
+            method = clazz.getMethod(request.getMethodName(), parameterTypes);
         } else {
-            // 根据请求的类进行加载
-            Class clazz = Class.forName(request.getClassName());
+            Class<?> clazz = Class.forName(request.getClassName());
             method = clazz.getMethod(request.getMethodName());
         }
-        Object result = method.invoke(server, args);
-        return result;
+        return method.invoke(object, parameters);
     }
 }

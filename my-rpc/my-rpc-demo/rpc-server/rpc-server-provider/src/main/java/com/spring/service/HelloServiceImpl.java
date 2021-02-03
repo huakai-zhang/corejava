@@ -1,4 +1,8 @@
-package com.spring;
+package com.spring.service;
+
+import com.spring.IHelloService;
+import com.spring.v2.RpcService;
+import com.spring.User;
 
 /**
  * @author 花开不合阳春暮
@@ -8,8 +12,8 @@ package com.spring;
 public class HelloServiceImpl implements IHelloService {
     @Override
     public String syaHello(String content) {
-        System.out.println("【v1.0】request in sayHello: " + content);
-        return "【v1.0】Say Hello: " + content;
+        System.out.println("request in sayHello: " + content);
+        return "Say Hello: " + content;
     }
 
     @Override

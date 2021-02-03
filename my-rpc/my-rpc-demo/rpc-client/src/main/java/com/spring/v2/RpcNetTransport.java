@@ -1,4 +1,6 @@
-package com.spring;
+package com.spring.v2;
+
+import com.spring.RpcRequest;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

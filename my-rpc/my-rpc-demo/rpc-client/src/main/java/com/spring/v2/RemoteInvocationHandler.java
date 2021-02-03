@@ -1,4 +1,6 @@
-package com.spring;
+package com.spring.v2;
+
+import com.spring.RpcRequest;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -19,12 +21,11 @@ public class RemoteInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println("Come in");
         RpcRequest request = new RpcRequest();
         request.setClassName(method.getDeclaringClass().getName());
         request.setMethodName(method.getName());
         request.setParameters(args);
-        request.setVersion("v1.0");
+        request.setVersion("v2.0");
         RpcNetTransport netTransport = new RpcNetTransport(host, port);
 
         Object result = netTransport.send(request);

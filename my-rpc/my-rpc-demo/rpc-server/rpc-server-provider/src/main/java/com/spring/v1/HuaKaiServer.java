@@ -1,4 +1,4 @@
-package com.spring;
+package com.spring.v1;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -7,24 +7,24 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @author 花开不合阳春暮
- * @date 2021/1/1 下午12:22
+ * @author 春阳
+ * @date 2021-02-03 13:46
  */
-public class RpcProxyServer {
+public class HuaKaiServer {
 
     ExecutorService executorService = Executors.newCachedThreadPool();
 
-    public void publisher(Object server, int port) {
+    public HuaKaiServer(Object server, int port) {
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(port);
             while (true) {
-                // 不断接受请求
                 Socket socket = serverSocket.accept();
-                // 每个socket交给线程处理
-                //executorService.execute(new ProcessorHandler(socket, server));
+                executorService.execute(new HuaKaiHandler(server, socket));
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
             if(serverSocket != null) {
                 try {
                     serverSocket.close();
@@ -34,5 +34,4 @@ public class RpcProxyServer {
             }
         }
     }
-
 }

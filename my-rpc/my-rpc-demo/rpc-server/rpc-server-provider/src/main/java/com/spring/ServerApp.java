@@ -1,6 +1,8 @@
 package com.spring;
 
-import org.springframework.context.ApplicationContext;
+import com.spring.v1.HuaKaiServer;
+import com.spring.service.HelloServiceImpl;
+import com.spring.v2.HuaKaiConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -10,9 +12,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class ServerApp {
     public static void main(String[] args) {
         /*IHelloService helloService = new HelloServiceImpl();
-        RpcProxyServer proxyServer = new RpcProxyServer();
-        proxyServer.publisher(helloService, 8080);*/
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+        new HuaKaiServer(helloService, 8080);*/
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(HuaKaiConfig.class);
         context.start();
     }
 }
