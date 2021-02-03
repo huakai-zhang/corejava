@@ -7,7 +7,7 @@ import org.apache.dubbo.config.annotation.Service;
  * @author 花开不合阳春暮
  * @date 2021/1/23 上午11:33
  */
-@Service(protocol = {"rest", "dubbo"}, registry = {"provider1", "provider2"})//(timeout = 50000, version = "v1.0.0")//loadbalance = "random", weight = 1
+@Service(protocol = {"rest", "dubbo"})//(registry = {"provider1", "provider2"}, timeout = 50000, version = "v1.0.0")//loadbalance = "random", weight = 1
 public class ISayHelloServiceImpl implements ISayHelloService {
 
     @Override
