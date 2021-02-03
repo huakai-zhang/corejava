@@ -1,6 +1,6 @@
-package com.spring.rpc.consumer.proxy;
+package com.spring.consumer;
 
-import com.spring.rpc.core.msg.InvokerMsg;
+import com.spring.rpc.core.RpcRequest;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -16,24 +16,20 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-public class RpcProxy {
-    public static <T> T create(Class<?> clazz) {
-        MethodProxy methodProxy = new MethodProxy(clazz);
-        T result = (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, methodProxy);
-        return result;
-    }
-}
+/**
+ * @author 春阳
+ * @date 2021-02-03 17:21
+ */
+public class HuaKaiProxy implements InvocationHandler {
 
-class MethodProxy implements InvocationHandler {
-
-    private Class<?> clazz;
-
-    public MethodProxy(Class<?> clazz) {
-        this.clazz = clazz;
+    public <T> T getInstance(Class<?> interfaceClass) {
+        return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class[]{interfaceClass}, this);
     }
 
+    /**
+     * 代理，调用IRpcHello接口中每一个方法的时候，实际上就是发起一次网络请求
+     */
     @Override
-    // 代理，调用IRpcHello接口中每一个方法的时候，实际上就是发起一次网络请求
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // 如果传进来的是一个已经实现的具体的类，直接忽略
         if (Object.class.equals(method.getDeclaringClass())) {
@@ -44,12 +40,11 @@ class MethodProxy implements InvocationHandler {
     }
 
     public Object rpcInvoke(Method method, Object[] args) {
-        InvokerMsg msg = new InvokerMsg();
-
-        msg.setClassName(this.clazz.getName());
-        msg.setMethodName(method.getName());
-        msg.setParames(method.getParameterTypes());
-        msg.setValues(args);
+        RpcRequest request = new RpcRequest();
+        request.setClassName(method.getDeclaringClass().getName());
+        request.setMethodName(method.getName());
+        request.setParameters(args);
+        request.setParameterTypes(method.getParameterTypes());
 
         EventLoopGroup group = new NioEventLoopGroup();
         RpcProxyHandler handler = new RpcProxyHandler();
@@ -76,7 +71,7 @@ class MethodProxy implements InvocationHandler {
                         }
                     });
             ChannelFuture future = b.connect("localhost", 8080).sync();
-            future.channel().writeAndFlush(msg).sync();
+            future.channel().writeAndFlush(request).sync();
             future.channel().closeFuture().sync();
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,4 +80,5 @@ class MethodProxy implements InvocationHandler {
         }
         return handler.getResult();
     }
+
 }

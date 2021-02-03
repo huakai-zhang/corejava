@@ -1,5 +1,6 @@
 package com.spring;
 
+import com.spring.v1.HuaKaiProxy;
 import com.spring.v2.RpcProxyClient;
 import com.spring.v2.SpringConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

@@ -1,8 +1,7 @@
-package com.spring.rpc.consumer;
+package com.spring.consumer;
 
 import com.spring.rpc.api.IRpcCalc;
 import com.spring.rpc.api.IRpcHello;
-import com.spring.rpc.consumer.proxy.RpcProxy;
 
 public class RpcConsumer {
 
@@ -13,12 +12,12 @@ public class RpcConsumer {
         // rpcHello.hello("晓晓");
 
         // 动态代理，传递一个接口与，返回一个实例（伪代理）
-        IRpcHello rpcHello = RpcProxy.create(IRpcHello.class);
+        IRpcHello rpcHello = new HuaKaiProxy().getInstance(IRpcHello.class);
         String r = rpcHello.hello("晓晓");
         System.out.println(r);
 
         int a = 8,b = 2;
-        IRpcCalc calc = RpcProxy.create(IRpcCalc.class);
+        IRpcCalc calc = new HuaKaiProxy().getInstance(IRpcCalc.class);
         System.out.println(a + " + " + b + " = " + calc.add(a, b));
         System.out.println(a + " - " + b + " = " + calc.sub(a, b));
         System.out.println(a + " * " + b + " = " + calc.mult(a, b));

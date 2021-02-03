@@ -33,6 +33,7 @@ public class HuaKaiProxy implements InvocationHandler {
         // 获取方法名和参数
         RpcRequest request = new RpcRequest();
         request.setMethodName(method.getName());
+        request.setParameterTypes(method.getParameterTypes());
         request.setParameters(args);
         // 建立远程通信
         Socket socket = new Socket(host, port);

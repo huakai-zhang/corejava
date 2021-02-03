@@ -76,12 +76,12 @@ public class HuaKaiSpringHandler implements Runnable {
         Object[] parameters = request.getParameters();
         Method method;
         if (parameters != null) {
-            Class<?>[] parameterTypes = new Class[parameters.length];
+            /*Class<?>[] parameterTypes = new Class[parameters.length];
             for (int i = 0; i < parameters.length; i++) {
                 parameterTypes[i] = parameters[i].getClass();
-            }
+            }*/
             Class<?> clazz = Class.forName(request.getClassName());
-            method = clazz.getMethod(request.getMethodName(), parameterTypes);
+            method = clazz.getMethod(request.getMethodName(), request.getParameterTypes());
         } else {
             Class<?> clazz = Class.forName(request.getClassName());
             method = clazz.getMethod(request.getMethodName());

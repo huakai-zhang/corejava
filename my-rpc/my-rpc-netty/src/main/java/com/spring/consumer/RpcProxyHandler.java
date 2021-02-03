@@ -1,4 +1,4 @@
-package com.spring.rpc.consumer.proxy;
+package com.spring.consumer;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

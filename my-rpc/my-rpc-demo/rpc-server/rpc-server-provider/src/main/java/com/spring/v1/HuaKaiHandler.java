@@ -59,15 +59,15 @@ public class HuaKaiHandler implements Runnable {
     private Object invoke(RpcRequest request) {
         Class<?> clazz = server.getClass();
 
-        Object[] args = request.getParameters();
+        /*Object[] args = request.getParameters();
         Class<?>[] types = new Class[args.length];
         for (int i = 0; i < args.length; i++) {
             types[i] = args[i].getClass();
-        }
+        }*/
 
         try {
-            Method method = clazz.getMethod(request.getMethodName(), types);
-            return method.invoke(server, args);
+            Method method = clazz.getMethod(request.getMethodName(), request.getParameterTypes());
+            return method.invoke(server, request.getParameters());
         } catch (Exception e) {
             e.printStackTrace();
         }

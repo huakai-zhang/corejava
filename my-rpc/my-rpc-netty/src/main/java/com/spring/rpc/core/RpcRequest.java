@@ -1,18 +1,13 @@
-package com.spring;
+package com.spring.rpc.core;
 
 import java.io.Serializable;
 
-/**
- * @author 花开不合阳春暮
- * @date 2021/1/1 下午12:31
- */
 public class RpcRequest implements Serializable {
 
     private String className;
     private String methodName;
     private Object[] parameters;
     private Class<?>[] parameterTypes;
-    private String version;
 
     public String getClassName() {
         return className;
@@ -36,14 +31,6 @@ public class RpcRequest implements Serializable {
 
     public void setParameters(Object[] parameters) {
         this.parameters = parameters;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
     }
 
     public Class<?>[] getParameterTypes() {

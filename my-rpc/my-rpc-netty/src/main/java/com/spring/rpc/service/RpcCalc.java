@@ -1,4 +1,4 @@
-package com.spring.rpc.provider;
+package com.spring.rpc.service;
 
 import com.spring.rpc.api.IRpcCalc;
 
