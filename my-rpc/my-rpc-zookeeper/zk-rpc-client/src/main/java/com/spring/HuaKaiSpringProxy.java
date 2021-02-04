@@ -1,15 +1,20 @@
-package com.spring.v2;
+package com.spring;
 
+import com.spring.discovery.ServiceDiscovery;
+import com.spring.discovery.ZookeeperServiceDiscovery;
 import com.spring.rpc.core.RpcRequest;
-import com.spring.v1.HuaKaiProxyHandler;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -22,6 +27,8 @@ import java.lang.reflect.Proxy;
 public class HuaKaiSpringProxy implements InvocationHandler {
 
     private String version;
+
+    private ServiceDiscovery serviceDiscovery = new ZookeeperServiceDiscovery();
 
     public <T> T getInstance(Class<?> interfaceClass) {
         return getInstance(interfaceClass, null);
@@ -52,6 +59,14 @@ public class HuaKaiSpringProxy implements InvocationHandler {
         request.setParameters(args);
         request.setParameterTypes(method.getParameterTypes());
         request.setVersion(version);
+
+        String serviceName = request.getClassName();
+        if(!StringUtils.isEmpty(version)){
+            serviceName = serviceName + "-" + version;
+        }
+        String serverAddress = serviceDiscovery.discovery(serviceName);
+        String[] urls = serverAddress.split(":");
+
         EventLoopGroup group = new NioEventLoopGroup();
         HuaKaiSpringProxyHandler handler = new HuaKaiSpringProxyHandler();
         try {
@@ -68,7 +83,7 @@ public class HuaKaiSpringProxy implements InvocationHandler {
                                     .addLast(handler);
                         }
                     });
-            ChannelFuture future = b.connect("localhost", 8080).sync();
+            ChannelFuture future = b.connect(urls[0], Integer.parseInt(urls[1])).sync();
             future.channel().writeAndFlush(request).sync();
             future.channel().closeFuture().sync();
         } catch (Exception e) {

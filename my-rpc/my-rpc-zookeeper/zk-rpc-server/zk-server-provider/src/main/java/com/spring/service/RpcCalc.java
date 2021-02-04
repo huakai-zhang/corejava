@@ -1,7 +1,9 @@
 package com.spring.service;
 
 import com.spring.rpc.api.IRpcCalc;
+import com.spring.RpcService;
 
+@RpcService(value = IRpcCalc.class)
 public class RpcCalc implements IRpcCalc {
     @Override
     public int add(int a, int b) {

@@ -1,9 +1,9 @@
-package com.spring.consumer;
+package com.spring;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
-public class RpcProxyHandler extends ChannelInboundHandlerAdapter {
+public class HuaKaiSpringProxyHandler extends ChannelInboundHandlerAdapter {
 
     private Object result;
 
