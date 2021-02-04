@@ -15,6 +15,7 @@ import java.util.Random;
 public class ZookeeperServiceDiscovery implements ServiceDiscovery {
 
     CuratorFramework curatorFramework;
+    LoadBalanceStrategy loadBalanceStrategy = new RoundRobinLocalBalance();
 
     //服务地址的本地缓存
     List<String> serviceRepos=new ArrayList<>();
@@ -43,7 +44,6 @@ public class ZookeeperServiceDiscovery implements ServiceDiscovery {
             }
         }
         //针对已有的地址做负载均衡
-        LoadBalanceStrategy loadBalanceStrategy = new RandomLoadBalance();
         return loadBalanceStrategy.selectHost(serviceRepos);
     }
 }
