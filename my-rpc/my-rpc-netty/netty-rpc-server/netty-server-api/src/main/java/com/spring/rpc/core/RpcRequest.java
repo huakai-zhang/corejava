@@ -4,9 +4,21 @@ import java.io.Serializable;
 
 public class RpcRequest implements Serializable {
 
+    /**
+     * 服务名
+     */
     private String className;
+    /**
+     * 方法名
+     */
     private String methodName;
+    /**
+     * 实参列表
+     */
     private Object[] parameters;
+    /**
+     * 形参列表
+     */
     private Class<?>[] parameterTypes;
     private String version;
 

@@ -7,6 +7,7 @@ import com.spring.RpcService;
 public class RpcHello implements IRpcHello {
     @Override
     public String hello(String name) {
+        System.out.println("Hello, Zookeeper Netty!!!");
         return "Hello, " + name + "!";
     }
 }

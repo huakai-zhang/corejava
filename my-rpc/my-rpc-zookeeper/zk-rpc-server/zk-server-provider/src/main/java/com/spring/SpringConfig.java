@@ -15,6 +15,6 @@ public class SpringConfig {
 
     @Bean
     public HuaKaiSpringServer huaKaiSpringServer() {
-        return new HuaKaiSpringServer(8082);
+        return new HuaKaiSpringServer(8081);
     }
 }

@@ -13,7 +13,7 @@ public class HuaKaiSpringProxyHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        this.result = msg;
+         this.result = msg;
     }
 
     @Override

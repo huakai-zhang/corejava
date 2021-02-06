@@ -16,7 +16,7 @@ public class ZookeeperRegistryCenter implements RegistryCenter {
     {
         //初始化zookeeper的连接， 会话超时时间是5s，衰减重试
         curatorFramework = CuratorFrameworkFactory.builder().
-                connectString("192.168.25.129:2181").sessionTimeoutMs(5000).
+                connectString("localhost:2181").sessionTimeoutMs(5000).
                 retryPolicy(new ExponentialBackoffRetry(1000, 3)).
                 namespace("huakai")
                 .build();

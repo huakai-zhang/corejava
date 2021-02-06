@@ -8,6 +8,9 @@ import java.util.List;
  */
 public abstract class AbstractLoadBalanceStrategy implements LoadBalanceStrategy {
 
+    /**
+     * 每个负载均衡策略都需要做的步骤，做一个模版方法
+     */
     @Override
     public String selectHost(List<String> repos) {
         //repos可能为空， 可能只有一个。
@@ -20,6 +23,9 @@ public abstract class AbstractLoadBalanceStrategy implements LoadBalanceStrategy
         return doSelect(repos);
     }
 
+    /**
+     * 负载均衡策略
+     */
     protected abstract String doSelect(List<String> repos);
 
 }

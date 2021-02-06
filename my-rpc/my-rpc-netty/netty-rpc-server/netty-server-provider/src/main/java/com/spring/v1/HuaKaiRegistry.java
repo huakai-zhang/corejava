@@ -26,7 +26,9 @@ public class HuaKaiRegistry {
     }
 
     public void start() {
+        // 主线程初始化
         NioEventLoopGroup bossGroup = new NioEventLoopGroup();
+        // 工作线程初始化
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
         HuaKaiHandler huaKaiHandler = new HuaKaiHandler();
         ServerBootstrap server = new ServerBootstrap();
@@ -35,9 +37,14 @@ public class HuaKaiRegistry {
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
+                        // 在netty中，把全部的业务逻辑处理放到一个队列中
+                        // 无锁化串行队列
                         ChannelPipeline pipeline = ch.pipeline();
 
                         // 处理的拆包，粘包的解，编器
+                        // maxFrameLength 采用什么样的协议，最大长度是多少，这里采用int，最大为int的最大值
+                        // lengthFieldOffset 信息头的偏移量
+                        // 每一个属性值的编码长度，int 4 字节
                         pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0 ,4));
                         pipeline.addLast(new LengthFieldPrepender(4));
 
@@ -50,6 +57,7 @@ public class HuaKaiRegistry {
                     }
                 })
                 .option(ChannelOption.SO_BACKLOG, 128)
+                // 保证每一个子线程可以循环利用
                 .childOption(ChannelOption.SO_KEEPALIVE, true);
         try {
             ChannelFuture sync = server.bind(port).sync();

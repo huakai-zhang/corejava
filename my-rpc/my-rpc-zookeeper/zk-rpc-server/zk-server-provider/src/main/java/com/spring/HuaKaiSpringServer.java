@@ -50,19 +50,25 @@ public class HuaKaiSpringServer implements ApplicationContextAware, Initializing
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         ServerBootstrap serverBootstrap = new ServerBootstrap();
-        serverBootstrap.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class).
-                childHandler(new ChannelInitializer<SocketChannel>() {
-                    @Override
-                    protected void initChannel(SocketChannel socketChannel) throws Exception {
-                        socketChannel.pipeline().
-                                addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null))).
-                                addLast(new ObjectEncoder()).
-                                addLast(new HuaKaiSpringHandler(beanMap));
-                    }
-                });
-        ChannelFuture sync = serverBootstrap.bind(port).sync();
-        System.out.println("服务启动成功，端口：" + port);
-        sync.channel().closeFuture().sync();
+        try {
+            serverBootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).
+                    childHandler(new ChannelInitializer<SocketChannel>() {
+                        @Override
+                        protected void initChannel(SocketChannel socketChannel) throws Exception {
+                            socketChannel.pipeline().
+                                    addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null))).
+                                    addLast(new ObjectEncoder()).
+                                    addLast(new HuaKaiSpringHandler(beanMap));
+                        }
+                    });
+            ChannelFuture sync = serverBootstrap.bind(port).sync();
+            System.out.println("服务启动成功，端口：" + port);
+            sync.channel().closeFuture().sync();
+        } finally {
+            System.out.println("服务关闭");
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
+        }
     }
 
     @Override

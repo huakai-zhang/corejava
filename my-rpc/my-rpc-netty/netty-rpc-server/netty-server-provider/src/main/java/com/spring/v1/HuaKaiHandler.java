@@ -27,17 +27,22 @@ public class HuaKaiHandler extends ChannelInboundHandlerAdapter {
     // 约定，只要卸载provider包下面的所有类都认为是一个可以对外提供服务的实现类
     // com.spring.service
     public HuaKaiHandler() {
+        // 1. 扫描所有符合条件的class，放到容器中
         scanClass("com.spring.service");
+        // 2. 给每一个Class起一个名字，注册
         doRegistry();
     }
 
+    // 3. 有客户端时触发
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         Object result = new Object();
         RpcRequest request = (RpcRequest) msg;
         if (registryMap.containsKey(request.getClassName())) {
+            // 4. 去注册好的服务中找到符合的服务
             Object clazz = registryMap.get(request.getClassName());
             Method method = clazz.getClass().getMethod(request.getMethodName(), request.getParameterTypes());
+            // 5. 调用，返回结果给客户端
             result = method.invoke(clazz, request.getParameters());
         }
         ctx.writeAndFlush(result);
