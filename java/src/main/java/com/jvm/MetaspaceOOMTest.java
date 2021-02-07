@@ -14,7 +14,9 @@ public class MetaspaceOOMTest {
 
     static class OOMTest {}
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        Thread.sleep(10000);
+        System.out.println("开始");
         // 模拟计数多少次以后发生异常
         int i = 0;
         try {
@@ -30,6 +32,7 @@ public class MetaspaceOOMTest {
                     }
                 });
                 enhancer.create();
+                Thread.sleep(50);
             }
         } catch (Throwable e) {
             System.out.println("************多少次后发生异常： " + i);
@@ -37,3 +40,4 @@ public class MetaspaceOOMTest {
         }
     }
 }
+// -XX:MetaspaceSize=8m -XX:MaxMetaspaceSize=8m

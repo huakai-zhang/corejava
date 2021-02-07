@@ -1,5 +1,9 @@
 package com.jvm;
 
+import com.juc.threadlocal.User;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -7,13 +11,20 @@ import java.util.Random;
  * @since 2020/9/4
  */
 public class JavaHeapSpaceDemo {
-    public static void main(String[] args) {
-        String str = "www.baidu.com" ;
+
+    public static void main(String[] args) throws InterruptedException {
+        Thread.sleep(10000);
+        List<User> users = new ArrayList<>();
+        //String str = "www.baidu.com" ;
         while(true) {
-            str += str + new Random().nextInt(88888888) + new Random().nextInt(999999999) ;
+            System.out.println("......");
+            users.add(new User("a"));
+            Thread.sleep(1000);
+            //str += str + new Random().nextInt(88888888) + new Random().nextInt(999999999) ;
         }
 
     }
 }
-// -Xms8m -Xmx8m -XX:+PrintGCDetails
+// str -Xms8m -Xmx8m -XX:+PrintGCDetails
+// users -Xms8m -Xmx8m
 // Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
