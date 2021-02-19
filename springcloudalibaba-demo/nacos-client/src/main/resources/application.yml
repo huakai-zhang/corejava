@@ -5,5 +5,9 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.25.128:8848
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 192.168.25.128:8080
 server:
   port: 8081

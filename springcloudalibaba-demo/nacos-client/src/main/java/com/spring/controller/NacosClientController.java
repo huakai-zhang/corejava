@@ -1,9 +1,12 @@
 package com.spring.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.spring.provider.NacosProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Random;
 
 /**
  * @author 春阳
@@ -16,7 +19,11 @@ public class NacosClientController {
     private NacosProvider nacosProvider;
 
     @GetMapping("/nacos")
-    public String nacos() {
+    @SentinelResource("hello-sentinel")
+    public String nacos() throws InterruptedException {
+        int time = new Random().nextInt(1000);
+        System.out.println("睡眠时间：" + time);
+        Thread.sleep(time);
         return "Client: " + nacosProvider.nacos();
     }
 
