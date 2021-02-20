@@ -19,12 +19,15 @@ public class NacosClientController {
     private NacosProvider nacosProvider;
 
     @GetMapping("/nacos")
-    @SentinelResource("hello-sentinel")
+    //@SentinelResource(value = "hello-sentinel", fallback = "fallbackHandler")
     public String nacos() throws InterruptedException {
-        int time = new Random().nextInt(1000);
+        /*int time = new Random().nextInt(1000);
         System.out.println("睡眠时间：" + time);
-        Thread.sleep(time);
+        Thread.sleep(time);*/
         return "Client: " + nacosProvider.nacos();
     }
 
+    public String fallbackHandler() {
+        return "已被降级";
+    }
 }

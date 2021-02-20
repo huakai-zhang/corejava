@@ -7,6 +7,8 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 /**
  * @author 春阳
  * @date 2021-02-19 15:47
@@ -25,7 +27,10 @@ public class NacosController {
     private NacosService nacosService;
 
     @GetMapping("/nacos")
-    public String nacos() {
+    public String nacos() throws InterruptedException {
+        int time = new Random().nextInt(1000);
+        System.out.println("睡眠时间：" + time);
+        Thread.sleep(time);
         return nacosService.nacos() + "Name: " + userName + ", Age: " + userAge;
     }
 
