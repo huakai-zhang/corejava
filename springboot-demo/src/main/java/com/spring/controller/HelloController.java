@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,9 @@ public class HelloController {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Autowired
     private AsyncHandlerTask asyncHandlerTask;
@@ -58,13 +62,16 @@ public class HelloController {
         asyncHandlerTask.sendMessage();
     }
 
-    @GetMapping("/redis")
-    @ApiOperation("redis 5分钟 的接口")
-    public void redis() {
+    @GetMapping("/rabbit")
+    @ApiOperation("rabbit 5分钟 的接口")
+    public void rabbit() {
         rabbitTemplate.convertAndSend("DZ_REDIS_EXCHANGE", "dz.redis", "10秒延时消息");
     }
 
-
+    @GetMapping("/redis")
+    public void redis() {
+        redisTemplate.opsForValue().set("xiaoxiao", "spring");
+    }
 
     @GetMapping("/format")
     public String format(){

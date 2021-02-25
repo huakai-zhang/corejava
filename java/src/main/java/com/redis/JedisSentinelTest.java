@@ -1,5 +1,6 @@
 package com.redis;
 
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisSentinelPool;
 
 import java.util.HashSet;
@@ -22,7 +23,8 @@ public class JedisSentinelTest {
     public static void main(String[] args) {
         JedisSentinelPool pool = createJedisPool();
         System.out.println(pool.getCurrentHostMaster());
-        pool.getResource().set("xiaoxiao", "520-"+System.currentTimeMillis());
-        System.out.println(pool.getResource().get("xiaoxiao"));
+        Jedis jedis = pool.getResource();
+        jedis.set("xiaoxiao", "520-"+System.currentTimeMillis());
+        System.out.println(jedis.get("xiaoxiao"));
     }
 }
