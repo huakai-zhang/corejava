@@ -218,5 +218,11 @@
             <version>0.10</version>
         </dependency>
         <!-- zookeeper 相关 -->
+
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+            <version>1.4.1</version>
+        </dependency>
     </dependencies>
 </project>
