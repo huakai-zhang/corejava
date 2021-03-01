@@ -23,10 +23,8 @@ public class NacosSdkDemo {
 
         try {
             ConfigService configService = NacosFactory.createConfigService(properties);
-            String info = configService.getConfig(DATA_ID, GROUP_ID, 3000);
-            System.out.println(info);
 
-            /*configService.addListener(DATA_ID, GROUP_ID, new Listener() {
+            configService.addListener(DATA_ID, GROUP_ID, new Listener() {
                 @Override
                 public Executor getExecutor() {
                     return null;
@@ -36,7 +34,22 @@ public class NacosSdkDemo {
                     System.out.println("配置改变==》" + configInfo);
                 }
             });
-            System.in.read();*/
+
+            configService.addListener("xiaoxiao", GROUP_ID, new Listener() {
+                @Override
+                public Executor getExecutor() {
+                    return null;
+                }
+                @Override
+                public void receiveConfigInfo(String configInfo) {
+                    System.out.println("配置改变==》" + configInfo);
+                }
+            });
+
+            String info = configService.getConfig(DATA_ID, GROUP_ID, 3000);
+            System.out.println(info);
+
+            System.in.read();
         } catch (Exception e) {
             e.printStackTrace();
         }
