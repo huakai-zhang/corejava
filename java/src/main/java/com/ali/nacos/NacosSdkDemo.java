@@ -1,9 +1,8 @@
-package com.nacos;
+package com.ali.nacos;
 
 import com.alibaba.nacos.api.NacosFactory;
 import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.listener.Listener;
-import com.alibaba.nacos.api.exception.NacosException;
 
 import java.util.Properties;
 import java.util.concurrent.Executor;
