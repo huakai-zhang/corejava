@@ -234,13 +234,13 @@
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-core</artifactId>
-            <version>1.6.3</version>
+            <version>1.8.1</version>
         </dependency>
         <!--加入 sentinel 监控所需-->
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-transport-simple-http</artifactId>
-            <version>1.6.3</version>
+            <version>1.8.1</version>
         </dependency>
     </dependencies>
 </project>
