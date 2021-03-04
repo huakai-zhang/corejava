@@ -2,6 +2,7 @@ package com.spring.controller;
 
 import com.spring.service.ISayHelloService;
 import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DubboController {
 
-    @Reference//(timeout = 1, cluster = "failfast", mock = "com.spring.mock.SayHelloServiceMock")// loadbalance = "random",
+    @Reference(timeout = 3000, check = false)//cluster = "failfast", mock = "com.spring.mock.SayHelloServiceMock")// loadbalance = "random",
     ISayHelloService sayHelloService;
 
     @GetMapping("/sayHello")
     public String sayHello() {
+        //RpcContext.getContext().setAttachment("dubboApplication","dubbo-springboot-client");
         return sayHelloService.sayHello();
     }
 
