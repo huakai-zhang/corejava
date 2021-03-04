@@ -18,7 +18,7 @@ public class DubboConfig {
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig applicationConfig = new ApplicationConfig();
-        applicationConfig.setName("dubbo-sentinel");
+        applicationConfig.setName("server-boot-provider");
         applicationConfig.setOwner("Spring");
         return applicationConfig;
     }
@@ -26,7 +26,7 @@ public class DubboConfig {
     @Bean
     public RegistryConfig registryConfig() {
         RegistryConfig registryConfig = new RegistryConfig();
-        registryConfig.setAddress("zookeeper://192.168.25.128:2181");
+        registryConfig.setAddress("zookeeper://localhost:2181");
         return registryConfig;
     }
 

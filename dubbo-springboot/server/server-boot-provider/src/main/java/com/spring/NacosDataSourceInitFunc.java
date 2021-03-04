@@ -25,7 +25,7 @@ public class NacosDataSourceInitFunc implements InitFunc {
     private final String APP_NAME="server-boot-provider"; //namespace
 
     //nacos的配置()
-    private final String remoteAddress="192.168.25.128:8848"; //nacos 配置中心的服务host
+    private final String remoteAddress="localhost:8848"; //nacos 配置中心的服务host
     private final String groupId="SENTINEL_GROUP";
     private final String FLOW_POSTFIX="-flow-rules"; //dataid（names+postfix）
 

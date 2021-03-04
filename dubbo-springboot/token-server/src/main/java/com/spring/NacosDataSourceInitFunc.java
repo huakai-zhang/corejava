@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class NacosDataSourceInitFunc implements InitFunc {
     //nacos 配置中心的服务host
-    private final String remoteAddress="192.168.25.128:8848";
+    private final String remoteAddress="localhost:8848";
     private final String groupId="SENTINEL_GROUP";
     //dataid（names+postfix）
     private final String FLOW_POSTFIX="-flow-rules";
