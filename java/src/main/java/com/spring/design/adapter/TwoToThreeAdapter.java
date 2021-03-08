@@ -3,7 +3,7 @@ package com.spring.design.adapter;
 /**
  * @author 春阳
  * @date 2021-03-08 19:22
- * 二项转三项的适配器  组合的方式  对象适配器
+ * 二项转三项的适配器  组合的方式对象适配器 Adapter适配器类 对 Adaptee 和 Target 进行适配
  */
 public class TwoToThreeAdapter implements ThreePower {
     /**
