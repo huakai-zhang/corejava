@@ -33,7 +33,7 @@ class MyThread {
 public class BubbleSort {
 
     public static void main(String[] args) {
-        MyThread myThread = new MyThread();
+        /*MyThread myThread = new MyThread();
         new Thread(() -> {
             for (int i = 0; i < 10; i++) {
                 try {
@@ -51,7 +51,7 @@ public class BubbleSort {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        }).start();*/
 //        int[] list = {10, 2, 3, 7, 8, 6, 5, 1, 9};
 //        //bubbleSort(list);
 //        quickSort(list, 0, list.length - 1);
@@ -59,6 +59,7 @@ public class BubbleSort {
 //        System.out.println(binarySearch(list, 7));
 //
 //        System.out.println(findMissing(list));
+        System.out.println(fi(4));
     }
 
     public static void bubbleSort(int[] list) {
@@ -137,10 +138,12 @@ public class BubbleSort {
     }
 
     public static int fi(int n) {
-        if (n == 0 || n == 1) {
-            return n;
-        } else {
-            return fi(n - 1) + fi(n - 2);
+        if(n < 1){
+            throw new IllegalArgumentException(n + "不能小于1");
         }
+        if (n == 1 || n == 2) {
+            return n;
+        }
+        return fi(n - 1) + fi(n - 2);
     }
 }
