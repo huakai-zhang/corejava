@@ -9,6 +9,8 @@ public class Test {
       map.put("BZ", "bb");
       map.put("C;", "cc");
       System.out.println(map);
+
+      System.out.println(Integer.toBinaryString(-32));
    }
 
 }

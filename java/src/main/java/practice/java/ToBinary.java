@@ -13,9 +13,6 @@ public class ToBinary {
             } else {
                 System.out.print("0");
             }
-            if ((32 - i) % 4 == 0) {
-                System.out.print(" ");
-            }
         }
     }
 }
