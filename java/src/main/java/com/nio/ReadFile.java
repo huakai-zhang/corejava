@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 public class ReadFile {
     public static void main(String[] args) throws Exception {
-        FileInputStream input = new FileInputStream("/Users/spring_zhang/Documents/info.txt");
+        FileInputStream input = new FileInputStream("E://info.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
         String nameLine = reader.readLine();
         String ageLine = reader.readLine();

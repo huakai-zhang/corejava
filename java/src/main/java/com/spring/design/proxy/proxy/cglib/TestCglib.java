@@ -27,6 +27,7 @@ public class TestCglib {
         try {
             LiSi obj = (LiSi)new GPMeipo().getInstance(LiSi.class);
             obj.findLove();
+            obj.test(); // 无法执行代理内容，只能正常调用
         } catch (Exception e) {
             e.printStackTrace();
         }

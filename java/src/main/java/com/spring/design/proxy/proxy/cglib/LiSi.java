@@ -10,4 +10,7 @@ public class LiSi {
         System.out.println("肤白貌美大长腿");
     }
 
+    public final void test() {
+        System.out.println("测试final方法");
+    }
 }

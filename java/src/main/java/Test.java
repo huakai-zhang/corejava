@@ -1,16 +1,14 @@
-import java.util.*;
+import com.spring.design.proxy.proxy.jdk.Person;
+import com.spring.design.proxy.proxy.jdk.XiaoXingxing;
+
+import java.lang.reflect.Proxy;
 
 public class Test {
 
+
    public static void main(String[] args) {
-      Map<String, String> map = new HashMap<>();
-
-      map.put("Ay", "aa");
-      map.put("BZ", "bb");
-      map.put("C;", "cc");
-      System.out.println(map);
-
-      System.out.println(Integer.toBinaryString(-32));
+      System.out.println(XiaoXingxing.class.isInterface());
+      System.out.println(Proxy.isProxyClass(XiaoXingxing.class));
    }
 
 }

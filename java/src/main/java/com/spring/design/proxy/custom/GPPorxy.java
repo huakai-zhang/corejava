@@ -61,7 +61,7 @@ public class GPPorxy {
 	
 	private static String generateSrc(Class<?> interfaces){
 		StringBuffer src = new StringBuffer();
-		src.append("package com.gupaoedu.vip.custom;" + ln);
+		src.append("package com.spring.design.proxy.custom;" + ln);
 		src.append("import java.lang.reflect.Method;" + ln);
 		src.append("public class $Proxy0 implements " + interfaces.getName() + "{" + ln);
 		

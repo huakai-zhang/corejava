@@ -33,7 +33,7 @@ public class BufferProgram {
         //判断有没有可读数据
         while (buffer.remaining() > 0) {
             byte b = buffer.get();
-            // System.out.print(((char)b));
+            System.out.print(((char)b));
         }
         output("调用get()", buffer);
 
