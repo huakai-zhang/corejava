@@ -44,6 +44,8 @@ public class StockService {
      */
     public static final String STOCK_LUA;
 
+    public static final String LOCK_KEY = "stock:lock:key";
+
     static {
         /**
          *
@@ -87,7 +89,7 @@ public class StockService {
         long stock = stock(key, num);
         // 初始化库存
         if (stock == UNINITIALIZED_STOCK) {
-            RLock redisLock = redissonClient.getLock(key);
+            RLock redisLock = redissonClient.getLock(LOCK_KEY);
             try {
                 // 获取锁
                 if (redisLock.tryLock()) {
@@ -139,7 +141,7 @@ public class StockService {
         }
 
         Assert.notNull(expire,"初始化库存失败，库存过期时间不能为null");
-        RLock redisLock = redissonClient.getLock(key);
+        RLock redisLock = redissonClient.getLock(LOCK_KEY);
         try {
             if (redisLock.tryLock()) {
                 // 获取到锁后再次判断一下是否有key
@@ -180,14 +182,9 @@ public class StockService {
         // 脚本里的KEYS参数
         List<String> keys = new ArrayList<>();
         keys.add(key);
-        // 脚本里的ARGV参数
-        List<String> args = new ArrayList<>();
-        args.add(Integer.toString(num));
-        DefaultRedisScript<Long> defaultRedisScript = new DefaultRedisScript<>();
-        defaultRedisScript.setResultType(Long.class);
-        defaultRedisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("stock.lua")));
 
-        System.out.println(STOCK_LUA);
-        return redisTemplate.execute(defaultRedisScript, keys, args);
+        DefaultRedisScript<Long> defaultRedisScript = new DefaultRedisScript<>(STOCK_LUA, Long.class);
+
+        return redisTemplate.execute(defaultRedisScript, keys, num);
     }
 }
