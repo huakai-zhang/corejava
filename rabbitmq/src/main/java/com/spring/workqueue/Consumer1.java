@@ -21,6 +21,7 @@ public class Consumer1 {
         final Channel channel = connection.createChannel();
 
         // 每次只能消费一个消息
+        // 开启能者多劳模式，每次取一个消费完再取（而不是一次性拿到所有被分配的消息，然后再慢慢消费）
         channel.basicQos(1);
 
         // 绑定死信交换机
