@@ -17,6 +17,11 @@ public class LoginController {
         return getUsername() + " 登录成功";
     }
 
+    @GetMapping(value = "/scope/test")
+    public String scope(){
+        return getUsername() + " 访问资源 hasScope('read')";
+    }
+
     /**
      * 测试资源1
      * @return

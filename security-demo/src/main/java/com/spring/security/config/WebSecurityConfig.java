@@ -20,6 +20,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * WebSecurityConfigurerAdapter主要作用于用户的登录(form login,Basic auth)，不用设置拦截oauth要开放的资源
+ * 如果同时设置了对某一资源的访问控制，会以ResourceServerConfigurerAdapter设置的为准
+ * 因为ResourceServerConfigurerAdapter优先级更高，他会优先处理，而WebSecurityConfigurerAdapter会失效
+ */
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
