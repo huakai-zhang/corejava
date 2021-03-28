@@ -15,7 +15,7 @@ class MyThread implements Callable<Integer> {
     }
 }
 
-public class CallableDemo {
+public class FutureTaskAndCallableDemo {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         FutureTask futureTask = new FutureTask(new MyThread());
         new Thread(futureTask, "A").start();
