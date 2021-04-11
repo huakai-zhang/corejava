@@ -7,41 +7,39 @@ import java.util.concurrent.TimeUnit;
 
 public class Test {
 
+   public static void main(String[] args) throws InterruptedException {
+      Thread countThread = new Thread(new Runner(), "CountThread");
+      countThread.start();
 
-   public static void main(String[] args) {
-      ThreadPoolExecutor poolExecutor=new ThreadPoolExecutor(5, 10,
-              1,
-              TimeUnit.MINUTES,
-              new LinkedBlockingDeque<Runnable>(2)
-      );
+      TimeUnit.SECONDS.sleep(1);
 
-      List<Runnable> rlist=new ArrayList<>();
-      for(int i=0;i<20;i++){
-         rlist.add(new RunnableTest(poolExecutor));
-      }
-      for(int i=0;i<20;i++){
-         poolExecutor.execute(rlist.get(1));
-      }
+      countThread.interrupt();
+
+      Runner runner = new Runner();
+
+      countThread = new Thread(runner, "CountThread");
+      countThread.start();
+
+      TimeUnit.SECONDS.sleep(1);
+
+      runner.cancel();
    }
 
 }
-class RunnableTest implements Runnable{
+class Runner implements Runnable{
+   private long i;
 
-   ThreadPoolExecutor poolExecutor;
-
-   public RunnableTest(  ThreadPoolExecutor poolExecutor){
-      this.poolExecutor=poolExecutor;
-   }
+   private volatile boolean on = true;
 
    @Override
    public void run() {
-      int threadSize=this.poolExecutor.getActiveCount();
-      int queueCurrentSize=this.poolExecutor.getQueue().size();
-      System.out.println(Thread.currentThread().getName()+":执行开始："+"当前线程数："+threadSize+"当前队列大小："+queueCurrentSize);
-      try {
-         Thread.sleep(1000);
-      } catch (InterruptedException e) {
-         e.printStackTrace();
+      while (on && !Thread.currentThread().isInterrupted()) {
+         i++;
       }
+      System.out.println("Count i = " + i);
+   }
+
+   public void cancel() {
+      on = false;
    }
 }
