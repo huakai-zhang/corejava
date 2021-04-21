@@ -1,45 +1,21 @@
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class Test {
 
+   private static final ThreadLocal<Long> THREAD_LOCAL = ThreadLocal.withInitial(System::currentTimeMillis);
+
+   public static void begin() {
+      THREAD_LOCAL.set(System.currentTimeMillis());
+   }
+
+   public static long end() {
+      return System.currentTimeMillis() - THREAD_LOCAL.get();
+   }
+
    public static void main(String[] args) throws InterruptedException {
-      Thread countThread = new Thread(new Runner(), "CountThread");
-      countThread.start();
-
+      Test.begin();
       TimeUnit.SECONDS.sleep(1);
-
-      countThread.interrupt();
-
-      Runner runner = new Runner();
-
-      countThread = new Thread(runner, "CountThread");
-      countThread.start();
-
-      TimeUnit.SECONDS.sleep(1);
-
-      runner.cancel();
+      System.out.println("Cost: " + Test.end() + " mills");
    }
 
-}
-class Runner implements Runnable{
-   private long i;
-
-   private volatile boolean on = true;
-
-   @Override
-   public void run() {
-      while (on && !Thread.currentThread().isInterrupted()) {
-         i++;
-      }
-      System.out.println("Count i = " + i);
-   }
-
-   public void cancel() {
-      on = false;
-   }
 }
