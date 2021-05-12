@@ -1,10 +1,30 @@
 package com.juc;
 
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 class ShareResource {
+
+    /**
+     * Semaphore 实现
+     */
+    /*private final Semaphore semaphoreA = new Semaphore(1);
+    private final Semaphore semaphoreB = new Semaphore(0);
+    private final Semaphore semaphoreC = new Semaphore(0);
+
+    public void printA() {
+        for (int i = 0; i < 10; i++) {
+            try {
+                semaphoreA.acquire();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("A");
+            semaphoreB.release();
+        }
+    }*/
 
     //1:A 2:B 3:C
     private int number = 1;

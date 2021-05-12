@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class NotSafeDemo {
     public static void main(String[] args) {
-        Map<String, String> map = new HashMap();
+        Map<String, String> map = new ConcurrentHashMap();
         Set<String> list = new HashSet<>();//Collections.synchronizedList(new ArrayList<>());//new Vector<>(); //new ArrayList<>();
 
         for (int i = 1; i <= 30; i++) {
