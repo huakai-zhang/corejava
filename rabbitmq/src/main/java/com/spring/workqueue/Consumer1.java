@@ -24,12 +24,6 @@ public class Consumer1 {
         // 开启能者多劳模式，每次取一个消费完再取（而不是一次性拿到所有被分配的消息，然后再慢慢消费）
         channel.basicQos(1);
 
-        // 绑定死信交换机
-        //Map<String, Object> arguments = new HashMap<String, Object>();
-        //arguments.put("x-dead-letter-exchange", "DLX_EXCHANGE");
-        //map.put("x-message-ttl", 11000); // 队列中的消息未被消费 11 秒后过期
-        //channel.queueDeclare("work", true, false, false, arguments);
-
         // 参数2，是否是持久化队列，要与生产者保持一致
         channel.queueDeclare("work", true, false, false, null);
 
