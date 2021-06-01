@@ -1,21 +1,9 @@
-import java.util.concurrent.TimeUnit;
-
+/**
+ * @author 春阳
+ * @date 2021-06-01 19:09
+ */
 public class Test {
+    public static void main(String[] args) {
 
-   private static final ThreadLocal<Long> THREAD_LOCAL = ThreadLocal.withInitial(System::currentTimeMillis);
-
-   public static void begin() {
-      THREAD_LOCAL.set(System.currentTimeMillis());
-   }
-
-   public static long end() {
-      return System.currentTimeMillis() - THREAD_LOCAL.get();
-   }
-
-   public static void main(String[] args) throws InterruptedException {
-      Test.begin();
-      TimeUnit.SECONDS.sleep(1);
-      System.out.println("Cost: " + Test.end() + " mills");
-   }
-
+    }
 }
