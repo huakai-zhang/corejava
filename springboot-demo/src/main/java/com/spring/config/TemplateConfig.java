@@ -1,9 +1,11 @@
 package com.spring.config;
 
+import com.spring.entity.MyBean;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class TemplateConfig {
@@ -31,5 +33,11 @@ public class TemplateConfig {
         });
 
         return rabbitTemplate;
+    }
+
+    @Bean
+    @Scope("session")
+    public MyBean myBean() {
+        return new MyBean();
     }
 }

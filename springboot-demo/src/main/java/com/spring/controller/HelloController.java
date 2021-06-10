@@ -1,6 +1,7 @@
 package com.spring.controller;
 
 import com.spring.entity.ApiUser;
+import com.spring.entity.MyBean;
 import com.spring.entity.User;
 import com.spring.service.AsyncHandlerTask;
 import com.spring.starter.HelloFormatTemplate;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +38,9 @@ public class HelloController {
 
     @Autowired
     HelloFormatTemplate helloFormatTemplate;
+
+    @Autowired
+    ApplicationContext applicationContext;
 
     @GetMapping("/hello")
     public String hello() {
@@ -79,5 +84,11 @@ public class HelloController {
         user.setId(1);
         user.setAccount("Xiaoxiao");
         return helloFormatTemplate.doFormat(user);
+    }
+
+    @GetMapping("/bean")
+    public void bean() {
+        System.out.println(applicationContext.getBean("myBean").hashCode());
+        System.out.println(applicationContext.getBean("myBean").hashCode());
     }
 }
