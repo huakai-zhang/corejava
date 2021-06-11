@@ -1,8 +1,11 @@
 package com.spring.model;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanNameAware;
+
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User implements Serializable, BeanNameAware {
     private static final long serialVersionUID = 361091462702868517L;
     private int id;
     private String name;
@@ -41,5 +44,14 @@ public class User implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        System.out.println("setBeanName");
+    }
+
+    public void display(){
+        System.out.println("我是原来的方法");
     }
 }
