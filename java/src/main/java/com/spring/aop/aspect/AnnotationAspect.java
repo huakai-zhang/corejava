@@ -22,16 +22,19 @@ public class AnnotationAspect {
 
     @Before("pointcutConfig()")
     public void before(JoinPoint joinPoint) {
+        System.out.println("调用方法之前执行" + joinPoint);
         logger.info("调用方法之前执行" + joinPoint);
     }
 
     @After("pointcutConfig()")
     public void after(JoinPoint joinPoint) {
+        System.out.println("调用方法之后执行" + joinPoint);
         logger.info("调用方法之后执行" + joinPoint);
     }
 
     @AfterReturning("pointcutConfig()")
     public void afterReturn(JoinPoint joinPoint) {
+        System.out.println("调用获得返回值之后执行" + joinPoint);
         logger.info("调用获得返回值之后执行" + joinPoint);
     }
 
@@ -46,5 +49,10 @@ public class AnnotationAspect {
         System.out.println(joinPoint.getThis());
 
         logger.info("抛出异常之后执行" + joinPoint);
+    }
+
+    //@Around("pointcutConfig()")
+    public void around(JoinPoint joinPoint) {
+        System.out.println("环绕通知" + joinPoint);
     }
 }

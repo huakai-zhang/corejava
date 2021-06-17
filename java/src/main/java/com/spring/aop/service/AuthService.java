@@ -1,21 +1,14 @@
 package com.spring.aop.service;
 
 import com.spring.model.User;
-import org.apache.log4j.Logger;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-@Service
-public class AuthService {
+/**
+ * @author 春阳
+ * @date 2021-06-15 17:13
+ */
+public interface AuthService {
+    User login(String loginName, String loginPass);
 
-    private final static Logger logger = Logger.getLogger(AuthService.class);
-
-    public User login(String loginName, String loginPass) {
-        logger.info("用户登陆");
-        return null;
-    }
-
-    public boolean logout(String loginName) {
-        logger.info("用户注销");
-        return true;
-    }
+    boolean logout(String loginName);
 }

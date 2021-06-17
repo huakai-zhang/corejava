@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+//@Service
 public class MemberManagerService {
 
     private final static org.apache.log4j.Logger logger = Logger.getLogger(MemberManagerService.class);
