@@ -5,7 +5,7 @@ package com.spring.design.singleton.register;
  * @date 2020/3/4 16:55
  */
 public enum RegisterEnum {
-    INSTANCE,WHITE,BLACK;
+    INSTANCE;
 
     public void getInstance() {}
 }
