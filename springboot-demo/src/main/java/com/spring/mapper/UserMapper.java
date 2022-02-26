@@ -8,7 +8,7 @@ import org.apache.ibatis.cursor.Cursor;
 import java.util.List;
 
 public interface UserMapper extends BaseMapper<User> {
-    List<User> getUserByAccount(@Param("randomUser") String randomUser);
+    List<User> getUserByCondition(@Param("id") Long id, @Param("randomUser") String randomUser);
 
     Cursor<User> scan(@Param("limit") int limit);
 }

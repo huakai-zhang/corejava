@@ -1,16 +1,16 @@
 package com.spring.config;
 
 import com.spring.entity.MyBean;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+//import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+//import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
-@Configuration
+//@Configuration
 public class TemplateConfig {
 
-    @Bean
+    /*@Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         //rabbitTemplate.setChannelTransacted(true);
@@ -39,5 +39,5 @@ public class TemplateConfig {
     @Scope("session")
     public MyBean myBean() {
         return new MyBean();
-    }
+    }*/
 }

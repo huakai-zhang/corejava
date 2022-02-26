@@ -1,20 +1,20 @@
 package com.spring.config;
 
 import com.spring.mq.RedisConsumer;
-import org.springframework.amqp.core.*;
+//import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
+//@Configuration
 public class RabbitConfig {
 
     /**
      * 队列消费者
      */
-    @Bean
+    /*@Bean
     public RedisConsumer redisConsumer() {
         return new RedisConsumer();
     }
@@ -52,5 +52,5 @@ public class RabbitConfig {
     @Bean public Binding bindingDead() {
         // 无条件路由
         return BindingBuilder.bind(deadLetterQueue()).to(deadLetterExchange()).with("#");
-    }
+    }*/
 }

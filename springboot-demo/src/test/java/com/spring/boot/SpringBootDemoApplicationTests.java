@@ -42,7 +42,7 @@ public class SpringBootDemoApplicationTests {
 
     @Test
     public void getUser() {
-        System.out.println(userService.getUserByAccount("ed2e0c87-2559-11eb-9365-0c9d9211a1c7"));
+        System.out.println(userService.getUserByCondition(null, "ed2e0c87-2559-11eb-9365-0c9d9211a1c7"));
     }
 
     @Test

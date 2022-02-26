@@ -1,11 +1,11 @@
 package com.spring.mq;
 
-import com.rabbitmq.client.Channel;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.annotation.Exchange;
-import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.QueueBinding;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+//import com.rabbitmq.client.Channel;
+//import org.springframework.amqp.core.Message;
+//import org.springframework.amqp.rabbit.annotation.Exchange;
+//import org.springframework.amqp.rabbit.annotation.Queue;
+//import org.springframework.amqp.rabbit.annotation.QueueBinding;
+//import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -14,10 +14,10 @@ import java.io.IOException;
  * @author Spring 花开不合阳春暮
  * @since 2020/7/28
  */
-@Component
+//@Component
 public class TopicConsumer {
 
-    @RabbitListener(bindings = {
+    /*@RabbitListener(bindings = {
             @QueueBinding(
                     value = @Queue,
                     exchange = @Exchange(value = "topics", type = "topic"),
@@ -39,7 +39,7 @@ public class TopicConsumer {
             @QueueBinding(
                     value = @Queue,
                     exchange = @Exchange(value = "topics", type = "topic"),
-                    key = {"order.#", "product.#"/*, "user.*"*/}
+                    key = {"order.#", "product.#"*//*, "user.*"*//*}
             )
     })
     public void receive2(String message) {
@@ -59,5 +59,5 @@ public class TopicConsumer {
     @RabbitListener(queuesToDeclare = @Queue("work"))
     public void receive23(String message) {
         System.out.println("work-message2 = " + message);
-    }
+    }*/
 }

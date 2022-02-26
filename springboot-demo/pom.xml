@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.4.RELEASE</version>
+        <version>2.0.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.spring</groupId>
@@ -75,10 +75,10 @@
             <version>1.16.14</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!--redis-->
         <dependency>
@@ -105,12 +105,12 @@
             <version>3.3.2</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.spring</groupId>
             <artifactId>demo-spring-boot-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
+-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -126,10 +126,23 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+
+        <!--配置多数据源-->
+        <!--<dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>2.5.4</version>
+        </dependency>-->
+        <!-- Druid数据库连接池-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.2.8</version>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>demo</finalName>
+        <!--<finalName>demo</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -151,13 +164,13 @@
                     <useDefaultDelimiters>true</useDefaultDelimiters>
                 </configuration>
             </plugin>
-        </plugins>
-        <!--<plugins>
+        </plugins>-->
+        <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-        </plugins>-->
+        </plugins>
     </build>
 
     <profiles>

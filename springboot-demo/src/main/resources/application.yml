@@ -1,15 +1,15 @@
 spring:
   profiles:
     active: ${profile.active}
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-    publisher-confirms: true
-    listener:
-      simple:
-        acknowledge-mode: manual # 手动应答
+    #rabbitmq:
+    #host: localhost
+    #port: 5672
+    #username: guest
+    #password: guest
+    #publisher-confirms: true
+      #listener:
+      #simple:
+      #acknowledge-mode: manual # 手动应答
         # NONE 自动应答
         # AUTO
           # 1.没有异常，自动ACK
@@ -20,16 +20,39 @@ spring:
     #sentinel:
       #master: mymaster
       #nodes: 192.168.25.128:26379,192.168.25.128:26380,192.168.25.128:26381
-    password: 1234
+    password:
     port: 6379
     host: localhost
 #logging:
   #config: classpath:logback-spring.xml
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   datasource:
-    url: jdbc:mysql://localhost:3306/spring?allowMultiQueries=true&serverTimezone=UTC&useUnicode=true&useSSL=false&&zeroDateTimeBehavior=convertToNull&useOldAliasMetadataBehavior=true
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    db1:
+      jdbc-url: jdbc:mysql://localhost:3306/spring?allowMultiQueries=true&serverTimezone=UTC&useUnicode=true&useSSL=false&&zeroDateTimeBehavior=convertToNull&useOldAliasMetadataBehavior=true
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    db2:
+      jdbc-url: jdbc:mysql://localhost:3306/spring_1?allowMultiQueries=true&serverTimezone=UTC&useUnicode=true&useSSL=false&&zeroDateTimeBehavior=convertToNull&useOldAliasMetadataBehavior=true
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      enabled: true
+    #dynamic:
+    #  primary: db1
+    #  datasource:
+    #    db1:
+    #      url: jdbc:mysql://localhost:3306/spring?allowMultiQueries=true&serverTimezone=UTC&useUnicode=true&useSSL=false&&zeroDateTimeBehavior=convertToNull&useOldAliasMetadataBehavior=true
+    #      username: root
+    #      password: 1234
+    #      driver-class-name: com.mysql.cj.jdbc.Driver
+    #    db2:
+    #      url: jdbc:mysql://localhost:3306/spring_1?allowMultiQueries=true&serverTimezone=UTC&useUnicode=true&useSSL=false&&zeroDateTimeBehavior=convertToNull&useOldAliasMetadataBehavior=true
+    #      username: root
+    #      password: 1234
+    #      driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
 
