@@ -8,7 +8,7 @@ import org.apache.ibatis.cursor.Cursor;
 import java.util.List;
 
 public interface UserService extends IService<User> {
-    List<User> getUserByCondition(Long id, String randomUser);
+    List<User> getUserByCondition(Long channelId, Long id, String randomUser);
 
     Cursor<User> scan(int limit);
 

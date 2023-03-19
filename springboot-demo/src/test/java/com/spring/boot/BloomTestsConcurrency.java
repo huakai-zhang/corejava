@@ -132,7 +132,7 @@ public class BloomTestsConcurrency {
             // TODO 防止并发重复写缓存，加锁
             synchronized (randomUser) {
                 // 如果缓存不存在查询数据库
-                List<User> user = userService.getUserByCondition(null, randomUser);
+                List<User> user = userService.getUserByCondition(1L, null, randomUser);
                 if (user == null || user.size() == 0) {
                     // 很容易发生连接池不够用的情况 HikariPool-1 - Connection is not available, request timed out after
                     System.out.println(" Redis缓存不存在，查询数据库也不存在，发生缓存穿透！！！");

@@ -26,8 +26,8 @@ public class LogAspect {
     @Pointcut("execution(* com.spring.service.*.*(..))")
     public void demo(){}
 
-    @Pointcut("@annotation( com.spring.config.datasource.MultipleDB)")
-    public void doPointcut() {}
+    /*@Pointcut("@annotation( com.spring.config.datasource.MultipleDB)")
+    public void doPointcut() {}*/
 
     @Before("demo()")
     public void before(JoinPoint joinPoint){
@@ -35,18 +35,19 @@ public class LogAspect {
         System.out.println(name + " 方法开始执行...");
     }
 
-    @Around("doPointcut()")
+    /*@Around("doPointcut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         MultipleDB db = getDataSource(point);
         Long id = null;
         Object[] args = point.getArgs();
         // 获取参数中关于db的信息
         for (Object arg : args) {
-            /*if (arg instanceof User) {
+            *//*if (arg instanceof User) {
                 id = ((User) arg).getId();
-            }*/
+            }*//*
             if (arg instanceof Long) {
                 id = (Long) arg;
+                break;
             }
         }
         if (!Objects.isNull(db) && id != null) {
@@ -70,9 +71,9 @@ public class LogAspect {
         }
     }
 
-    /**
+    *//**
      * 获取@MultipleDB注解
-     */
+     *//*
     public MultipleDB getDataSource(ProceedingJoinPoint point) {
         // 获取当前访问的Class
         Class<?> clazz = point.getTarget().getClass();
@@ -84,5 +85,5 @@ public class LogAspect {
 
         Method method = ((MethodSignature) point.getSignature()).getMethod();
         return method.getAnnotation(MultipleDB.class);
-    }
+    }*/
 }

@@ -1,6 +1,7 @@
 package com.spring.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.spring.config.datasource.MultipleDB;
 import com.spring.entity.User;
 import com.spring.mapper.UserMapper;
 import com.spring.service.MemberService;
@@ -21,7 +22,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private MemberService memberService;
 
     @Override
-    public List<User> getUserByCondition(Long id, String randomUser) {
+    //@MultipleDB
+    public List<User> getUserByCondition(Long channelId, Long id, String randomUser) {
         return baseMapper.getUserByCondition(id, randomUser);
     }
 

@@ -49,7 +49,7 @@ public class UserController {
         } finally {
             lock.unlock();
         }*/
-        return userService.getUserByCondition(req.getId(), req.getRandomUser());
+        return userService.getUserByCondition(req.getChannelId(), req.getId(), req.getRandomUser());
     }
 
     @PostMapping("/list1")
