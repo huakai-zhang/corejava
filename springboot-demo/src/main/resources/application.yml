@@ -58,6 +58,9 @@ spring:
           driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
+  # mybatis日志打印格式
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 #server:
 #  tomcat:

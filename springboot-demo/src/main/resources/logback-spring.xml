@@ -70,7 +70,7 @@
     <!-- 级别依次为【从高到低】：FATAL > ERROR > WARN > INFO > DEBUG > TRACE  -->
     <!--单独指定日志级别 优先级高于全局-->
     <springProfile name="dev">
-        <logger name="com.spring">
+        <logger name="com.spring.mapper">
             <level value="DEBUG"/>
         </logger>
     </springProfile>

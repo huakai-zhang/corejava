@@ -1,6 +1,7 @@
 package corejava.chapter11.section3;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -10,6 +11,8 @@ import java.util.stream.Stream;
  */
 public class FilterTest {
     public static void main(String[] args) {
+        List<String> aa = Collections.emptyList();
+
         List<String> words = new ArrayList<>();
         words.stream().filter(w -> w.length() > 12);
         Stream<String> firstLetters = words.stream().map(s -> s.substring(0, 1));
